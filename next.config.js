@@ -20,15 +20,13 @@ const nextConfig = {
       },
     ],
   },
-  // Add these to help with build
-  swcMinify: true,
-  output: 'standalone',
-  // Disable turbopack for now
-  experimental: {
-    turbo: {
-      enabled: false,
-    },
-  },
+  // REMOVE these invalid keys:
+  // swcMinify: true,  <- Remove this
+  // experimental: {   <- Remove this entire block
+  //   turbo: {
+  //     enabled: false,
+  //   },
+  // },
 };
 
 module.exports = nextConfig;
