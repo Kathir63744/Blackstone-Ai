@@ -24,3 +24,141 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+.network-flow {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+}
+.service-final {
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+
+
+.flow-badge {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+
+  padding: 12px 20px;
+
+  background: rgba(255,255,255,.95);
+  backdrop-filter: blur(20px);
+
+  border: 1px solid rgba(255,255,255,.9);
+
+  border-radius: 999px;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  white-space: nowrap;
+
+  transform: translate(-50%, -50%);
+
+  opacity: 0;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.15),
+    0 0 20px rgba(91,181,246,.25);
+
+  animation-duration: 1.4s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+}
+
+/* PMS */
+.flow-pms {
+  animation-name: pmsMove;
+  animation-delay: 0s;
+}
+
+/* Booking */
+.flow-booking {
+  animation-name: bookingMove;
+  animation-delay: 1.5s;
+}
+
+/* Google */
+.flow-google {
+  animation-name: googleMove;
+  animation-delay: 3s;
+}
+
+/* HouseKeeping */
+.flow-house {
+  animation-name: houseMove;
+  animation-delay: 4.5s;
+}
+
+/* AI */
+.flow-ai {
+  animation-name: aiMove;
+  animation-delay: 6s;
+}
+
+/* Dashboard */
+.flow-dashboard {
+  animation-name: dashboardMove;
+  animation-delay: 7.5s;
+}
+
+/* SEO */
+.flow-seo {
+  animation-name: seoMove;
+  animation-delay: 9s;
+}
+
+/* OTA */
+.flow-ota {
+  animation-name: otaMove;
+  animation-delay: 10.5s;
+}
+@keyframes pmsMove {
+  0% { opacity:0; transform:translate(-50%,-50%); }
+  20% { opacity:1; }
+  100% { opacity:0; transform:translate(-430px,-240px); }
+}
+
+@keyframes bookingMove {
+  0% { opacity:0; transform:translate(-50%,-50%); }
+  20% { opacity:1; }
+  100% { opacity:0; transform:translate(-50%,-300px); }
+}
+
+@keyframes googleMove {
+  0% { opacity:0; transform:translate(-50%,-50%); }
+  20% { opacity:1; }
+  100% { opacity:0; transform:translate(330px,-240px); }
+}
+
+@keyframes houseMove {
+  0% { opacity:0; transform:translate(-50%,-50%); }
+  20% { opacity:1; }
+  100% { opacity:0; transform:translate(-520px,-50%); }
+}
+
+@keyframes aiMove {
+  0% { opacity:0; transform:translate(-50%,-50%); }
+  20% { opacity:1; }
+  100% { opacity:0; transform:translate(430px,-50%); }
+}
+
+@keyframes dashboardMove {
+  0% { opacity:0; transform:translate(-50%,-50%); }
+  20% { opacity:1; }
+  100% { opacity:0; transform:translate(-430px,190px); }
+}
+
+@keyframes seoMove {
+  0% { opacity:0; transform:translate(-50%,-50%); }
+  20% { opacity:1; }
+  100% { opacity:0; transform:translate(-50%,250px); }
+}
+
+@keyframes otaMove {
+  0% { opacity:0; transform:translate(-50%,-50%); }
+  20% { opacity:1; }
+  100% { opacity:0; transform:translate(330px,190px); }
+}
