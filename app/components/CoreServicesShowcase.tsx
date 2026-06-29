@@ -99,7 +99,7 @@ const products: Product[] = [
       "Commission-free reservations",
       "Google Hotel Ads visibility",
       "Secure online payments",
-      "Automated cancellation management",
+      "Auto cancellation management",
     ],
   },
   {
@@ -569,8 +569,8 @@ const StatusBadge = ({ index, isDark }: { index: number; isDark: boolean }) => {
   const Icon = status.icon;
   
   return (
-    <div className="flex items-center gap-1.5 text-[10px] font-medium">
-      <Icon className={`w-3 h-3 ${status.color}`} strokeWidth={2.5} />
+    <div className="flex items-center gap-1 text-[10px] sm:text-[10px] font-medium">
+      <Icon className={`w-3 h-3 sm:w-3 sm:h-3 ${status.color}`} strokeWidth={2.5} />
       <span className={isDark ? "text-gray-400" : "text-gray-500"}>{status.label}</span>
     </div>
   );
@@ -590,7 +590,7 @@ const ServiceCell = ({ product, index, isDark, delay }: {
   return (
     <div 
       ref={ref}
-      className={`group relative ${theme.cardBg} border ${theme.border} rounded-xl p-4 sm:p-5 transition-all duration-700 ease-out hover:shadow-xl ${theme.shadow} hover:-translate-y-0.5 cursor-default overflow-hidden flex flex-col h-full min-h-[260px] sm:min-h-[280px] ${
+      className={`group relative ${theme.cardBg} border ${theme.border} rounded-xl p-4 sm:p-4 md:p-5 transition-all duration-700 ease-out hover:shadow-xl ${theme.shadow} hover:-translate-y-0.5 cursor-default overflow-hidden flex flex-col h-full min-h-[280px] sm:min-h-[260px] md:min-h-[280px] ${
         isVisible 
           ? 'opacity-100 translate-y-0' 
           : 'opacity-0 translate-y-12'
@@ -601,47 +601,47 @@ const ServiceCell = ({ product, index, isDark, delay }: {
       
       <div className="relative flex flex-col h-full">
         {/* Header */}
-        <div className="flex items-start justify-between mb-2 sm:mb-3">
-          <div className="flex items-center gap-2 sm:gap-3">
-            <div className={`w-9 h-9 sm:w-11 sm:h-11 rounded-xl ${theme.bg} flex items-center justify-center flex-shrink-0 border-2 ${theme.border} transition-all duration-200 group-hover:scale-105`}>
-              <span className={`text-xs sm:text-sm font-bold ${theme.accent}`}>{dayNumber}</span>
+        <div className="flex items-start justify-between mb-2 sm:mb-2 md:mb-3">
+          <div className="flex items-center gap-2 sm:gap-2 md:gap-3">
+            <div className={`w-10 h-10 sm:w-9 sm:h-9 md:w-11 md:h-11 rounded-xl ${theme.bg} flex items-center justify-center flex-shrink-0 border-2 ${theme.border} transition-all duration-200 group-hover:scale-105`}>
+              <span className={`text-sm sm:text-xs md:text-sm font-bold ${theme.accent}`}>{dayNumber}</span>
             </div>
-            <div className={`p-1 sm:p-1.5 rounded-lg ${theme.bg} transition-all duration-200 group-hover:scale-110`}>
-              <CalendarIcon className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${theme.accent}`} strokeWidth={1.75} />
+            <div className={`p-1 sm:p-1 md:p-1.5 rounded-lg ${theme.bg} transition-all duration-200 group-hover:scale-110`}>
+              <CalendarIcon className={`w-4 h-4 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 ${theme.accent}`} strokeWidth={1.75} />
             </div>
           </div>
           <StatusBadge index={index} isDark={isDark} />
         </div>
         
         {/* Meta - Hide on very small screens */}
-        <div className="hidden xs:flex items-center gap-2 mb-2 sm:mb-3">
+        <div className="hidden xs:flex items-center gap-2 sm:gap-2 mb-2 sm:mb-2 md:mb-3">
           <div className={`w-1.5 h-1.5 rounded-full ${theme.dot} ${isDark ? '' : 'animate-pulse'}`} />
-          <span className={`text-[8px] sm:text-[10px] font-medium ${theme.textMuted} tracking-wider uppercase`}>
+          <span className={`text-[10px] sm:text-[8px] md:text-[10px] font-medium ${theme.textMuted} tracking-wider uppercase`}>
             {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Special'][index % 8]}
           </span>
-          <span className={`text-[8px] sm:text-[10px] ${theme.textMuted}`}>•</span>
-          <span className={`text-[8px] sm:text-[10px] font-mono ${theme.textMuted}`}>
+          <span className={`text-[10px] sm:text-[8px] md:text-[10px] ${theme.textMuted}`}>•</span>
+          <span className={`text-[10px] sm:text-[8px] md:text-[10px] font-mono ${theme.textMuted}`}>
             Q{Math.floor(index / 4) + 1}
           </span>
         </div>
         
         {/* Title */}
-        <div className="mb-3 sm:mb-4 flex-1">
-          <h3 className={`text-sm sm:text-base font-bold ${theme.textPrimary} leading-snug mb-0.5 sm:mb-1 group-hover:${isDark ? 'text-gray-200' : 'text-gray-800'} transition-colors`}>
+        <div className="mb-3 sm:mb-3 md:mb-4 flex-1">
+          <h3 className={`text-[15px] sm:text-sm md:text-base font-bold ${theme.textPrimary} leading-snug mb-1 group-hover:${isDark ? 'text-gray-200' : 'text-gray-800'} transition-colors`}>
             {product.title}
           </h3>
-          <p className={`text-[10px] sm:text-xs font-semibold ${theme.textMuted} tracking-wider`}>
+          <p className={`text-[11px] sm:text-[10px] md:text-xs font-semibold ${theme.textMuted} tracking-wider`}>
             {product.subtitle}
           </p>
         </div>
         
         {/* Features */}
         <div className="mt-auto">
-          <div className={`h-px bg-gradient-to-r ${isDark ? 'from-gray-700/80' : 'from-gray-200/80'} to-transparent mb-2 sm:mb-3`} />
-          <ul className="space-y-1 sm:space-y-1.5">
+          <div className={`h-px bg-gradient-to-r ${isDark ? 'from-gray-700/80' : 'from-gray-200/80'} to-transparent mb-2 sm:mb-2 md:mb-3`} />
+          <ul className="space-y-1 sm:space-y-1 md:space-y-1.5">
             {product.features.map((feature, idx) => (
-              <li key={idx} className={`text-[10px] sm:text-xs ${theme.textSecondary} flex items-start gap-1.5 sm:gap-2 group/feature`}>
-                <span className={`${theme.accent} select-none transition-all duration-200 group-hover/feature:scale-125 text-[8px] sm:text-xs`}>◆</span>
+              <li key={idx} className={`text-[13px] sm:text-[12px] md:text-sm ${theme.textSecondary} flex items-start gap-1.5 sm:gap-1.5 md:gap-2 group/feature`}>
+                <span className={`${theme.accent} select-none transition-all duration-200 group-hover/feature:scale-125 text-[10px] sm:text-[9px] md:text-sm`}>◆</span>
                 <span className={`group-hover/feature:${isDark ? 'text-gray-200' : 'text-gray-700'} transition-colors`}>{feature}</span>
               </li>
             ))}
@@ -649,7 +649,7 @@ const ServiceCell = ({ product, index, isDark, delay }: {
         </div>
       </div>
       
-      <div className={`absolute top-0 right-0 w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-bl ${theme.gradient} opacity-20 pointer-events-none`} />
+      <div className={`absolute top-0 right-0 w-12 h-12 sm:w-12 sm:h-12 md:w-16 md:h-16 bg-gradient-to-bl ${theme.gradient} opacity-20 pointer-events-none`} />
     </div>
   );
 };
@@ -729,29 +729,29 @@ export default function CoreServicesShowcase() {
   }, []);
 
   return (
-    <section className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:py-10 lg:py-19 bg-white">
+    <section className="w-full max-w-7xl mx-auto px-3 sm:px-3 md:px-4 py-6 sm:py-6 md:py-10 lg:py-19 bg-white">
       {/* Header - Always Light */}
       <div 
         ref={headerRef}
-        className={`text-center mb-8 sm:mb-10 md:mb-12 transition-all duration-700 ease-out ${
+        className={`text-center mb-8 sm:mb-8 md:mb-10 lg:mb-12 transition-all duration-700 ease-out ${
           headerVisible 
             ? 'opacity-100 translate-y-0' 
             : 'opacity-0 translate-y-8'
         }`}
       >
-        <div className="inline-block mb-6 sm:mb-8 relative">
-          <span className="inline-block text-[8px] sm:text-[10px] font-bold tracking-[0.2em] uppercase text-white px-4 sm:px-6 py-1.5 sm:py-2 bg-gradient-to-r from-amber-500 to-amber-500 rounded-lg shadow-lg shadow-indigo-500/25 relative">
+        <div className="inline-block mb-4 sm:mb-6 md:mb-8 relative">
+          <span className="inline-block text-[10px] sm:text-[8px] md:text-[10px] font-bold tracking-[0.2em] sm:tracking-[0.2em] uppercase text-white px-4 sm:px-4 md:px-6 py-1.5 sm:py-1.5 md:py-2 bg-gradient-to-r from-amber-500 to-amber-500 rounded-lg shadow-lg shadow-indigo-500/25 relative">
             Core Services
-            <span className="absolute -top-1 -right-1 w-3 h-3 sm:w-4 sm:h-4 bg-white/20 backdrop-blur-sm rounded-tr-lg rounded-bl-lg" />
-            <span className="absolute -bottom-1 -left-1 w-3 h-3 sm:w-4 sm:h-4 bg-white/20 backdrop-blur-sm rounded-bl-lg rounded-tr-lg" />
+            <span className="absolute -top-1 -right-1 w-3 h-3 sm:w-3 sm:h-3 md:w-4 md:h-4 bg-white/20 backdrop-blur-sm rounded-tr-lg rounded-bl-lg" />
+            <span className="absolute -bottom-1 -left-1 w-3 h-3 sm:w-3 sm:h-3 md:w-4 md:h-4 bg-white/20 backdrop-blur-sm rounded-bl-lg rounded-tr-lg" />
           </span>
         </div>
-        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight mb-3 sm:mb-4">
+        <h2 className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 tracking-tight mb-3 sm:mb-3 md:mb-4">
           Everything You Need.
           <br />
           <span className="text-amber-600">One Intelligent Platform.</span>
         </h2>
-        <p className="text-xs sm:text-sm md:text-base text-gray-500 max-w-2xl mx-auto px-2">
+        <p className="text-sm sm:text-xs md:text-sm lg:text-base text-gray-500 max-w-2xl mx-auto px-2">
           Discover the complete ecosystem powering modern hotels with Blackstone AI.
         </p>
       </div>
@@ -770,60 +770,60 @@ export default function CoreServicesShowcase() {
         }`}
       >
         {/* Browser Header - Adapts to theme */}
-        <div className={`sticky top-0 z-10 backdrop-blur-sm border-b px-3 sm:px-4 md:px-6 py-2.5 sm:py-3.5 flex items-center justify-between transition-colors duration-300 ${
+        <div className={`sticky top-0 z-10 backdrop-blur-sm border-b px-3 sm:px-3 md:px-4 lg:px-6 py-2.5 sm:py-2.5 md:py-3.5 flex items-center justify-between transition-colors duration-300 ${
           isDark 
             ? 'bg-gray-800/95 border-gray-700/80' 
             : 'bg-white/95 border-gray-200/80'
         }`}>
           {/* Left - macOS dots and navigation */}
-          <div className="flex items-center gap-2 sm:gap-4">
+          <div className="flex items-center gap-2 sm:gap-2 md:gap-4">
             {/* Hide dots on very small screens */}
             <div className="hidden sm:flex gap-1.5">
-              <span className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-red-400/80 hover:bg-red-500 transition-colors cursor-pointer"></span>
-              <span className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-yellow-400/80 hover:bg-yellow-500 transition-colors cursor-pointer"></span>
-              <span className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-green-400/80 hover:bg-green-500 transition-colors cursor-pointer"></span>
+              <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-400/80 hover:bg-red-500 transition-colors cursor-pointer"></span>
+              <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-400/80 hover:bg-yellow-500 transition-colors cursor-pointer"></span>
+              <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-400/80 hover:bg-green-500 transition-colors cursor-pointer"></span>
             </div>
-            <div className={`h-4 sm:h-5 w-px ${isDark ? 'bg-gray-700/80' : 'bg-gray-200/80'}`}></div>
-            <div className="flex items-center gap-1 sm:gap-1.5">
-              <button className={`p-1 sm:p-1.5 rounded-lg transition-colors ${isDark ? 'hover:bg-gray-700/50' : 'hover:bg-gray-100'}`}>
-                <ChevronDown className={`w-3 h-3 sm:w-3.5 sm:h-3.5 ${isDark ? 'text-gray-500' : 'text-gray-400'}`} />
+            <div className={`h-4 sm:h-4 md:h-5 w-px ${isDark ? 'bg-gray-700/80' : 'bg-gray-200/80'}`}></div>
+            <div className="flex items-center gap-1 sm:gap-1 md:gap-1.5">
+              <button className={`p-1 sm:p-1 md:p-1.5 rounded-lg transition-colors ${isDark ? 'hover:bg-gray-700/50' : 'hover:bg-gray-100'}`}>
+                <ChevronDown className={`w-3 h-3 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 ${isDark ? 'text-gray-500' : 'text-gray-400'}`} />
               </button>
-              <button className={`p-1 sm:p-1.5 rounded-lg transition-colors ${isDark ? 'hover:bg-gray-700/50' : 'hover:bg-gray-100'}`}>
-                <Maximize2 className={`w-3 h-3 sm:w-3.5 sm:h-3.5 ${isDark ? 'text-gray-500' : 'text-gray-400'}`} />
+              <button className={`p-1 sm:p-1 md:p-1.5 rounded-lg transition-colors ${isDark ? 'hover:bg-gray-700/50' : 'hover:bg-gray-100'}`}>
+                <Maximize2 className={`w-3 h-3 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 ${isDark ? 'text-gray-500' : 'text-gray-400'}`} />
               </button>
             </div>
           </div>
           
           {/* Center - Platform branding */}
-          <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2 sm:gap-4">
-            <div className="flex items-center gap-1.5 sm:gap-2.5">
-              <div className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 rounded-lg bg-gradient-to-br from-gray-900 to-gray-700 flex items-center justify-center">
-                <span className="text-[6px] sm:text-[7px] md:text-[8px] font-bold text-white tracking-wider">BA</span>
+          <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2 sm:gap-2 md:gap-4">
+            <div className="flex items-center gap-1.5 sm:gap-1.5 md:gap-2.5">
+              <div className="w-4 h-4 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 rounded-lg bg-gradient-to-br from-gray-900 to-gray-700 flex items-center justify-center">
+                <span className="text-[7px] sm:text-[6px] md:text-[7px] lg:text-[8px] font-bold text-white tracking-wider">BA</span>
               </div>
-              <span className={`text-[8px] sm:text-[10px] md:text-xs font-semibold tracking-[0.15em] uppercase transition-colors duration-300 ${
+              <span className={`text-[10px] sm:text-[8px] md:text-[10px] lg:text-xs font-semibold tracking-[0.15em] sm:tracking-[0.15em] uppercase transition-colors duration-300 ${
                 isDark ? 'text-gray-300' : 'text-gray-700'
               }`}>
                 <span className="hidden xs:inline">Blackstone AI Platform</span>
                 <span className="xs:hidden">BA Platform</span>
               </span>
             </div>
-            <div className={`h-3 sm:h-4 w-px ${isDark ? 'bg-gray-700/80' : 'bg-gray-200/80'}`}></div>
-            <div className={`hidden sm:flex items-center gap-1.5 ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>
-              <CalendarDays className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-              <span className="text-[8px] sm:text-[10px] font-medium">Dashboard</span>
+            <div className={`h-3.5 sm:h-3 md:h-4 w-px ${isDark ? 'bg-gray-700/80' : 'bg-gray-200/80'}`}></div>
+            <div className={`hidden sm:flex items-center gap-1.5 md:gap-1.5 ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>
+              <CalendarDays className="w-3 h-3 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5" />
+              <span className="text-[10px] sm:text-[8px] md:text-[10px] font-medium">Dashboard</span>
             </div>
-            <div className={`hidden sm:flex items-center gap-1.5 ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>
-              <LayoutGrid className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-              <span className="text-[8px] sm:text-[10px] font-medium">Services</span>
+            <div className={`hidden md:flex items-center gap-1.5 md:gap-1.5 ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>
+              <LayoutGrid className="w-3 h-3 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5" />
+              <span className="text-[10px] sm:text-[8px] md:text-[10px] font-medium">Services</span>
             </div>
           </div>
           
           {/* Right - Action buttons with Dark/Light toggle */}
-          <div className="flex items-center gap-1 sm:gap-2">
+          <div className="flex items-center gap-1 sm:gap-1 md:gap-2">
             {/* Dark/Light Mode Toggle - Inside frame */}
             <button
               onClick={toggleTheme}
-              className={`p-1 sm:p-1.5 rounded-lg transition-all duration-300 ${
+              className={`p-1 sm:p-1 md:p-1.5 rounded-lg transition-all duration-300 ${
                 isDark 
                   ? 'bg-gray-700/50 hover:bg-gray-600/50 text-yellow-400' 
                   : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
@@ -832,24 +832,24 @@ export default function CoreServicesShowcase() {
               title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
             >
               {isDark ? (
-                <Sun className="w-3 h-3 sm:w-4 sm:h-4" />
+                <Sun className="w-3 h-3 sm:w-3 sm:h-3 md:w-4 md:h-4" />
               ) : (
-                <Moon className="w-3 h-3 sm:w-4 sm:h-4" />
+                <Moon className="w-3 h-3 sm:w-3 sm:h-3 md:w-4 md:h-4" />
               )}
             </button>
             
-            <button className={`hidden sm:block p-1 sm:p-1.5 rounded-lg transition-colors relative ${isDark ? 'hover:bg-gray-700/50' : 'hover:bg-gray-100'}`}>
-              <BellRing className={`w-3 h-3 sm:w-4 sm:h-4 ${isDark ? 'text-gray-400' : 'text-gray-400'}`} />
-              <span className="absolute top-0.5 right-0.5 w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-red-400"></span>
+            <button className={`hidden sm:block p-1 sm:p-1 md:p-1.5 rounded-lg transition-colors relative ${isDark ? 'hover:bg-gray-700/50' : 'hover:bg-gray-100'}`}>
+              <BellRing className={`w-3 h-3 sm:w-3 sm:h-3 md:w-4 md:h-4 ${isDark ? 'text-gray-400' : 'text-gray-400'}`} />
+              <span className="absolute top-0.5 right-0.5 w-1.5 h-1.5 rounded-full bg-red-400"></span>
             </button>
-            <button className={`hidden sm:block p-1 sm:p-1.5 rounded-lg transition-colors ${isDark ? 'hover:bg-gray-700/50' : 'hover:bg-gray-100'}`}>
-              <Search className={`w-3 h-3 sm:w-4 sm:h-4 ${isDark ? 'text-gray-400' : 'text-gray-400'}`} />
+            <button className={`hidden sm:block p-1 sm:p-1 md:p-1.5 rounded-lg transition-colors ${isDark ? 'hover:bg-gray-700/50' : 'hover:bg-gray-100'}`}>
+              <Search className={`w-3 h-3 sm:w-3 sm:h-3 md:w-4 md:h-4 ${isDark ? 'text-gray-400' : 'text-gray-400'}`} />
             </button>
-            <button className={`hidden sm:block p-1 sm:p-1.5 rounded-lg transition-colors ${isDark ? 'hover:bg-gray-700/50' : 'hover:bg-gray-100'}`}>
-              <Settings className={`w-3 h-3 sm:w-4 sm:h-4 ${isDark ? 'text-gray-400' : 'text-gray-400'}`} />
+            <button className={`hidden md:block p-1 sm:p-1 md:p-1.5 rounded-lg transition-colors ${isDark ? 'hover:bg-gray-700/50' : 'hover:bg-gray-100'}`}>
+              <Settings className={`w-3 h-3 sm:w-3 sm:h-3 md:w-4 md:h-4 ${isDark ? 'text-gray-400' : 'text-gray-400'}`} />
             </button>
-            <div className={`h-4 sm:h-5 w-px ${isDark ? 'bg-gray-700/80' : 'bg-gray-200/80'}`}></div>
-            <button className={`px-2 sm:px-3 py-1 sm:py-1.5 text-white text-[8px] sm:text-[10px] md:text-xs font-medium rounded-lg transition-colors ${
+            <div className={`h-4 sm:h-4 md:h-5 w-px ${isDark ? 'bg-gray-700/80' : 'bg-gray-200/80'}`}></div>
+            <button className={`px-2 sm:px-2 md:px-3 py-1 sm:py-1 md:py-1.5 text-white text-[10px] sm:text-[8px] md:text-[10px] lg:text-xs font-medium rounded-lg transition-colors ${
               isDark ? 'bg-gray-600 hover:bg-gray-500' : 'bg-gray-900 hover:bg-gray-800'
             }`}>
               <span className="hidden xs:inline">+ New</span>
@@ -859,12 +859,12 @@ export default function CoreServicesShowcase() {
         </div>
         
         {/* Scrollable Grid - Theme applies here */}
-        <div className={`max-h-[600px] sm:max-h-[700px] md:max-h-[900px] overflow-y-auto scrollbar-hide transition-colors duration-300 ${
+        <div className={`max-h-[600px] sm:max-h-[600px] md:max-h-[700px] lg:max-h-[900px] overflow-y-auto scrollbar-hide transition-colors duration-300 ${
           isDark ? 'bg-gray-900' : 'bg-white'
         }`}>
-          <div className="p-3 sm:p-4 md:p-6">
+          <div className="p-3 sm:p-3 md:p-4 lg:p-6">
             {/* Grid with consistent heights */}
-            <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4 auto-rows-fr">
+            <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-2 md:gap-3 lg:gap-4 auto-rows-fr">
               {products.map((product, index) => (
                 <ServiceCell 
                   key={index} 
@@ -895,7 +895,7 @@ export default function CoreServicesShowcase() {
                   <div 
                     ref={ref}
                     key={index} 
-                    className={`group relative px-2 sm:px-3 py-2 sm:py-3 transition-all duration-700 ease-out ${
+                    className={`group relative px-2 sm:px-2 md:px-3 py-2.5 sm:py-2 md:py-3 transition-all duration-700 ease-out ${
                       isDark 
                         ? 'hover:bg-gray-700/30' 
                         : 'hover:bg-gray-50'
@@ -912,19 +912,19 @@ export default function CoreServicesShowcase() {
                     }`}
                     style={{ transitionDelay: `${index * 100 + 50}ms` }}
                   >
-                    <div className="relative flex items-center gap-2 sm:gap-4">
+                    <div className="relative flex items-center gap-2 sm:gap-2 md:gap-4">
                       {/* Icon with gradient background */}
-                      <div className={`flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-xl bg-gradient-to-br ${item.gradient} flex items-center justify-center shadow-lg transition-all duration-300 group-hover:scale-110`}>
-                        <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 text-white" strokeWidth={1.75} />
+                      <div className={`flex-shrink-0 w-8 h-8 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 rounded-xl bg-gradient-to-br ${item.gradient} flex items-center justify-center shadow-lg transition-all duration-300 group-hover:scale-110`}>
+                        <Icon className="w-4 h-4 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 lg:w-5 lg:h-5 text-white" strokeWidth={1.75} />
                       </div>
                       
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-1 sm:gap-2 mb-0.5">
-                          <h4 className={`text-[10px] sm:text-xs md:text-sm font-bold ${isDark ? 'text-gray-200' : 'text-gray-800'} transition-colors group-hover:${isDark ? 'text-gray-100' : 'text-gray-900'}`}>
+                        <div className="flex items-center gap-1 sm:gap-1 md:gap-2 mb-0.5">
+                          <h4 className={`text-[11px] sm:text-[10px] md:text-xs lg:text-sm font-bold ${isDark ? 'text-gray-200' : 'text-gray-800'} transition-colors group-hover:${isDark ? 'text-gray-100' : 'text-gray-900'}`}>
                             {item.title}
                           </h4>
                         </div>
-                        <p className={`text-[8px] sm:text-[10px] md:text-xs ${isDark ? 'text-gray-500' : 'text-gray-400'} transition-colors truncate sm:truncate-none`}>
+                        <p className={`text-[10px] sm:text-[8px] md:text-[10px] lg:text-xs ${isDark ? 'text-gray-500' : 'text-gray-400'} transition-colors truncate sm:truncate-none`}>
                           {item.description}
                         </p>
                       </div>

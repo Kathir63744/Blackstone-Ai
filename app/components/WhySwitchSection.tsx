@@ -378,12 +378,12 @@ const AdvantageCard = ({ item, isActive, onClick, delay }: {
           }`}>
             {item.title}
           </h3>
-          <p className="text-[10px] sm:text-xs text-gray-500 leading-relaxed hidden sm:block">{item.description}</p>
+          <p className="text-[9px] sm:text-[14px] text-gray-500 leading-relaxed hidden sm:block">{item.description}</p>
           <div className="flex items-center gap-1.5 sm:gap-2 mt-1.5 sm:mt-2.5">
-            <span className={`text-xs sm:text-sm font-bold ${isActive ? colors.textPrimaryActive : 'text-gray-700'}`}>
+            <span className={`text-md sm:text-xl font-semibold ${isActive ? colors.textPrimaryActive : 'text-gray-700'}`}>
               {item.metric}
             </span>
-            <span className={`text-[8px] sm:text-[10px] font-medium ${colors.badgeBg} ${colors.badgeText} px-1.5 sm:px-2.5 py-0.5 rounded-full border ${colors.badgeBorder}`}>
+            <span className={`text-[10px] sm:text-[12px] font-medium ${colors.badgeBg} ${colors.badgeText} px-1.5 sm:px-2.5 py-0.5 rounded-full border ${colors.badgeBorder}`}>
               {item.change}
             </span>
           </div>
@@ -412,10 +412,10 @@ const MetricPill = ({ metric, delay }: { metric: MetricItem; delay: number }) =>
         <Icon className={`w-4 h-4 sm:w-5 sm:h-5 ${colors.iconColor}`} strokeWidth={1.5} />
       </div>
       <div>
-        <div className={`text-base sm:text-lg md:text-xl font-bold ${colors.metricText}`}>
+        <div className={`text-base sm:text-2xl md:text-2xl font-bold ${colors.metricText}`}>
           {metric.value}
         </div>
-        <div className="text-[8px] sm:text-[9px] md:text-[10px] text-gray-500 font-medium">{metric.label}</div>
+        <div className="text-[10px] sm:text-[11px] md:text-[12px] text-gray-500 font-medium">{metric.label}</div>
       </div>
     </div>
   );
@@ -557,19 +557,19 @@ const ImageSlider = ({ items, activeIndex, onPrevious, onNext, isPlaying, onTogg
           <div className={`p-1.5 sm:p-2 rounded-xl ${colors.iconBg}`}>
             <currentItem.icon className={`w-4 h-4 sm:w-5 sm:h-5 ${colors.iconColor}`} strokeWidth={1.75} />
           </div>
-          <span className={`text-[8px] sm:text-[10px] md:text-xs font-semibold ${colors.textSecondary} tracking-wider uppercase`}>
+          <span className={`text-[10px] sm:text-[14px] md:text-lg font-semibold ${colors.textSecondary} tracking-wider uppercase`}>
             {currentItem.title}
           </span>
-          <span className={`text-[8px] sm:text-[10px] font-medium ${colors.badgeBg} ${colors.badgeText} px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-full border ${colors.badgeBorder} ml-auto`}>
+          <span className={`text-[9px] sm:text-[11px] font-medium ${colors.badgeBg} ${colors.badgeText} px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-full border ${colors.badgeBorder} ml-auto`}>
             {currentItem.change}
           </span>
         </div>
-        <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">
+        <p className="text-md sm:text-md mt-6 text-gray-700 leading-relaxed">
           {currentItem.description}
         </p>
-        <div className="flex items-center gap-2 sm:gap-3 mt-2 sm:mt-3">
+        <div className="flex items-center gap-2 sm:gap-3 mt-8 sm:mt-9">
           <span className={`text-xl sm:text-2xl font-bold ${colors.metricText}`}>{currentItem.metric}</span>
-          <span className="text-[8px] sm:text-xs text-gray-400">Impact Metric</span>
+          <span className="text-[12px] sm:text-lg text-gray-400">Impact Metric</span>
         </div>
       </div>
     </div>
@@ -649,7 +649,7 @@ export default function PlatformAdvantage() {
   };
 
   return (
-    <section className="w-full max-w-7xl mx-auto px-3 sm:px-4 py-10 sm:py-14 md:py-17 bg-white">
+    <section className="w-full max-w-7xl mx-auto px-3 sm:px-4 py-8 sm:py-11 md:py-15 bg-white">
       {/* Header */}
       <div 
         ref={headerRef}
@@ -669,7 +669,7 @@ export default function PlatformAdvantage() {
         <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight">
           Built for What's Next
         </h2>
-        <p className="text-xs sm:text-sm text-gray-500 max-w-2xl mx-auto mt-2 sm:mt-3 px-2">
+        <p className="text-md sm:text-md text-gray-500 max-w-3xl mx-auto mt-2 sm:mt-3 px-2">
           Most platforms are built for the past. Blackstone AI is your intelligent growth engine for the future.
         </p>
       </div>

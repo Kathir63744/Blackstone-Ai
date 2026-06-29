@@ -98,31 +98,31 @@ export default function Navbar() {
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center">
           <div className="flex items-center gap-6 xl:gap-8">
-            <button className="flex items-center gap-1 text-[13px] font-medium text-black hover:text-neutral-700 transition-colors">
+            <button className="flex items-center gap-1 text-[14px] font-semibold text-black hover:text-neutral-700 transition-colors">
               Platform
               <ChevronDown size={14} />
             </button>
 
-            <button className="flex items-center gap-1 text-[13px] text-neutral-600 hover:text-black transition-colors">
+            <button className="flex items-center gap-1 text-[14px] font-semibold text-neutral-600 hover:text-black transition-colors">
               Solutions
               <ChevronDown size={14} />
             </button>
 
-            <button className="flex items-center gap-1 text-[13px] text-neutral-600 hover:text-black transition-colors">
+            <button className="flex items-center gap-1 text-[14px] font-semibold text-neutral-600 hover:text-black transition-colors">
               Products
               <ChevronDown size={14} />
             </button>
 
             <Link
               href="/pricing"
-              className="text-[13px] text-neutral-600 hover:text-black transition-colors"
+              className="text-[14px] font-semibold text-neutral-600 hover:text-black transition-colors"
             >
               Pricing
             </Link>
 
             <Link
               href="/contact"
-              className="text-[13px] text-neutral-600 hover:text-black transition-colors"
+              className="text-[14px] font-semibold text-neutral-600 hover:text-black transition-colors"
             >
               Contact
             </Link>
@@ -131,7 +131,7 @@ export default function Navbar() {
 
         {/* Right Side */}
         <div className="flex items-center gap-2 sm:gap-4">
-          <button className="hidden md:flex items-center text-[13px] text-neutral-600 hover:text-black transition-colors">
+          <button className="hidden md:flex items-center text-[14px] font-semibold text-neutral-600 hover:text-black transition-colors">
             Book Demo
           </button>
 

@@ -414,9 +414,9 @@ const comparisonRows = [
   },
 ];
 const pricingData: Record<string, Plan[]> = {
-  "Independent Hotel": [
+  "Elite": [
     {
-      title: "Essential",
+      title: "Elite",
       audience: "For Boutique Hotels",
       price: "$79",
       description: "Perfect for independent properties.",
@@ -429,7 +429,7 @@ const pricingData: Record<string, Plan[]> = {
       ],
     },
     {
-      title: "Growth",
+      title: "Essential",
       audience: "For Growing Hotels",
       price: "$149",
       description: "Automation and guest engagement tools.",
@@ -456,7 +456,7 @@ const pricingData: Record<string, Plan[]> = {
     },
   ],
 
-  Group: [
+  Essential: [
     {
       title: "Group Starter",
       audience: "Small Hotel Groups",
@@ -585,7 +585,7 @@ const pricingData: Record<string, Plan[]> = {
 export default function Home() {
   const [open, setOpen] = useState("");
   const cardsPerPage = 4;
-const [activeTab, setActiveTab] = useState("Independent Hotel");
+const [activeTab, setActiveTab] = useState("Elite");
 const [currentPage, setCurrentPage] = useState(0);
 
 const totalPages = Math.ceil(products.length / cardsPerPage);
@@ -687,7 +687,7 @@ const paginatedProducts = products.slice(
                   Decision
                 </h2>
 
-                <p className="mt-8 text-neutral-500 leading-8 max-w-sm">
+                <p className="mt-8 text-neutral-700 leading-9 max-w-sm">
                   Discover how AI-powered workflows help businesses
                   automate operations, improve efficiency and create
                   exceptional customer experiences.
@@ -824,7 +824,7 @@ const paginatedProducts = products.slice(
             Model
           </h2>
 
-          <p className="mt-4 sm:mt-6 text-slate-500 text-xs sm:text-sm leading-7 sm:leading-8 max-w-lg">
+          <p className="mt-4 sm:mt-6 text-slate-500 text-sm sm:text-lg leading-7 sm:leading-8 max-w-lg">
             Powerful infrastructure designed to simplify operations,
             elevate guest experiences and accelerate revenue growth
             across every hospitality business model.
@@ -841,7 +841,7 @@ const paginatedProducts = products.slice(
                 <h4 className="font-bold text-xs sm:text-sm text-slate-900">
                   All-in-One Platform
                 </h4>
-                <p className="text-[10px] sm:text-xs text-slate-500 mt-0.5 leading-relaxed">
+                <p className="text-[11px] sm:text-sm text-slate-500 mt-0.5 leading-relaxed">
                   Manage bookings, operations, distribution and revenue from a unified ecosystem.
                 </p>
               </div>
@@ -855,7 +855,7 @@ const paginatedProducts = products.slice(
                 <h4 className="font-bold text-xs sm:text-sm text-slate-900">
                   Scalable For Every Business
                 </h4>
-                <p className="text-[10px] sm:text-xs text-slate-500 mt-0.5 leading-relaxed">
+                <p className="text-[11px] sm:text-sm text-slate-500 mt-0.5 leading-relaxed">
                   Flexible architecture built for independent properties, groups and global brands.
                 </p>
               </div>
@@ -869,7 +869,7 @@ const paginatedProducts = products.slice(
                 <h4 className="font-bold text-xs sm:text-sm text-slate-900">
                   Secure & Reliable
                 </h4>
-                <p className="text-[10px] sm:text-xs text-slate-500 mt-0.5 leading-relaxed">
+                <p className="text-[11px] sm:text-sm text-slate-500 mt-0.5 leading-relaxed">
                   Enterprise-grade security with high availability and continuous uptime.
                 </p>
               </div>
@@ -1035,7 +1035,7 @@ const paginatedProducts = products.slice(
                       {item.title}
                     </h3>
 
-                    <p className="text-[10px] sm:text-xs text-slate-500 mt-0.5 sm:mt-1 max-w-lg leading-relaxed">
+                    <p className="text-[11px] sm:text-sm text-slate-500 mt-0.5 sm:mt-1 max-w-lg leading-relaxed">
                       {item.text}
                     </p>
                   </div>
@@ -1468,10 +1468,8 @@ const paginatedProducts = products.slice(
           <div className="flex justify-center mt-6 sm:mt-8 lg:mt-10">
             <div className="bg-[#F5EFE9] rounded-full p-1.5 flex flex-wrap gap-1 max-w-full overflow-x-auto">
               {[
-                "Independent Hotel",
-                "Group",
-                "Resort",
-                "Enterprise",
+                "Elite",
+                "Essential",
               ].map((tab, index) => (
                 <button
                   key={tab}

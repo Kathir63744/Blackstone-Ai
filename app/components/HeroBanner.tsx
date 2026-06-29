@@ -243,20 +243,6 @@ const HeroBanner = () => {
     };
   }, [dimensions]);
 
-  const getBadgeStyle = (badgeId: string): React.CSSProperties => {
-    const pos = badgePositions[badgeId];
-    if (!pos) return { display: "none" };
-    
-    return {
-      position: "absolute",
-      left: pos.x - 55,
-      top: pos.y - 42,
-      width: 110,
-      zIndex: 20,
-      pointerEvents: "auto",
-    };
-  };
-
   const isBadgeVisible = (badgeId: string): boolean => {
     return activeBadges.includes(badgeId);
   };
@@ -340,7 +326,7 @@ const HeroBanner = () => {
         {/* Ecosystem Section - Fixed height responsive */}
         <div 
           ref={ecosystemRef}
-          className={`relative mt-1 sm:mt-2 h-[220px] sm:h-[320px] md:h-[400px] lg:h-[480px] w-full overflow-hidden rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-3xl transition-all duration-700 ease-out ${
+          className={`relative mt-1 sm:mt-2 h-[240px] sm:h-[340px] md:h-[420px] lg:h-[500px] w-full overflow-hidden rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-3xl transition-all duration-700 ease-out ${
             ecosystemVisible 
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 translate-y-12'
@@ -383,30 +369,63 @@ const HeroBanner = () => {
               })}
             </svg>
 
-            {/* Center Hub Card - PERFECTLY CENTERED */}
+            {/* Center Hub Card - FULLY MOBILE RESPONSIVE WITH SAME LOOK */}
             <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
-              <div className="relative px-1.5 sm:px-2 md:px-3 py-1.5 sm:py-2 md:py-2.5 rounded-lg sm:rounded-xl bg-white/15 backdrop-blur-xl border border-white/20 shadow-xl text-center min-w-[60px] sm:min-w-[80px] md:min-w-[110px] pointer-events-auto">
-                <div className="text-[4px] sm:text-[5px] md:text-[7px] font-semibold tracking-[0.12em] sm:tracking-[0.15em] md:tracking-[0.2em] text-blue-200 uppercase mb-0.5">
+              <div className="relative px-2 sm:px-3 md:px-4 lg:px-5 py-1.5 sm:py-2 md:py-3 lg:py-4 rounded-lg sm:rounded-xl bg-white/15 backdrop-blur-xl border border-white/20 shadow-xl text-center min-w-[50px] sm:min-w-[70px] md:min-w-[90px] lg:min-w-[120px] pointer-events-auto">
+                <div className="text-[5px] xs:text-[6px] sm:text-[7px] md:text-[9px] lg:text-[11px] font-semibold tracking-[0.08em] sm:tracking-[0.1em] md:tracking-[0.15em] lg:tracking-[0.2em] text-blue-200 uppercase mb-0.5 sm:mb-1">
                   BLACKSTONE AI
                 </div>
-                <div className="text-[5px] sm:text-[6px] md:text-[8px] font-medium text-white/70 mb-0.5">
+                <div className="text-[6px] xs:text-[7px] sm:text-[8px] md:text-[10px] lg:text-[12px] font-medium text-white/70 mb-0.5 sm:mb-1">
                   Core Services
                 </div>
-                <div className="text-[6px] sm:text-[7px] md:text-[9px] font-bold text-white leading-tight">
+                <div className="text-[7px] xs:text-[8px] sm:text-[9px] md:text-[11px] lg:text-[13px] font-bold text-white leading-tight">
                   One Platform. Complete Ops.
                 </div>
               </div>
             </div>
 
-            {/* Service Badges - WIDER WITH CLEAR TEXT */}
+            {/* Service Badges - FIXED HEIGHT WITH PROPER TOP/BOTTOM PADDING ALIGNMENT */}
             {badgeData.map((badge) => {
               const isVisible = isBadgeVisible(badge.id);
               const pos = badgePositions[badge.id];
               if (!pos) return null;
               
-              // Responsive badge sizing
-              const badgeWidth = dimensions.width < 480 ? 60 : dimensions.width < 640 ? 70 : dimensions.width < 768 ? 85 : 110;
-              const badgeHeight = dimensions.width < 480 ? 28 : dimensions.width < 640 ? 32 : dimensions.width < 768 ? 38 : 42;
+              // Responsive badge sizing with consistent height
+              let badgeWidth, badgeHeight, paddingY, paddingX, iconSize, nameSize, subtitleSize;
+              
+              if (dimensions.width < 480) {
+                badgeWidth = 75;
+                badgeHeight = 48;
+                paddingY = "py-1.5";
+                paddingX = "px-2";
+                iconSize = "text-[13px]";
+                nameSize = "text-[8px]";
+                subtitleSize = "text-[6px]";
+              } else if (dimensions.width < 640) {
+                badgeWidth = 85;
+                badgeHeight = 54;
+                paddingY = "py-2";
+                paddingX = "px-2.5";
+                iconSize = "text-[15px]";
+                nameSize = "text-[9px]";
+                subtitleSize = "text-[6.5px]";
+              } else if (dimensions.width < 768) {
+                badgeWidth = 100;
+                badgeHeight = 60;
+                paddingY = "py-2.5";
+                paddingX = "px-3";
+                iconSize = "text-[17px]";
+                nameSize = "text-[10px]";
+                subtitleSize = "text-[7px]";
+              } else {
+                badgeWidth = 125;
+                badgeHeight = 68;
+                paddingY = "py-3";
+                paddingX = "px-3.5";
+                iconSize = "text-[19px]";
+                nameSize = "text-[12px]";
+                subtitleSize = "text-[8px]";
+              }
               
               return (
                 <div
@@ -416,6 +435,7 @@ const HeroBanner = () => {
                     left: pos.x - (badgeWidth / 2),
                     top: pos.y - (badgeHeight / 2),
                     width: badgeWidth,
+                    height: badgeHeight,
                     zIndex: 20,
                     pointerEvents: "auto",
                     opacity: isVisible ? 1 : 0,
@@ -423,13 +443,13 @@ const HeroBanner = () => {
                     transition: "all 0.3s ease",
                   }}
                 >
-                  <div className="relative group p-1 sm:p-1.5 md:p-2.5 rounded-md sm:rounded-lg md:rounded-xl bg-white border border-gray-200 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 text-center">
-                    <div className="relative z-10">
-                      <div className="text-xs sm:text-sm md:text-md mb-0.5">{badge.icon}</div>
-                      <div className="text-gray-900 font-extrabold text-[6px] sm:text-[7px] md:text-[10px] leading-tight tracking-wide">
+                  <div className={`relative group ${paddingY} ${paddingX} rounded-md sm:rounded-lg md:rounded-xl bg-white border border-gray-200 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 text-center w-full h-full flex items-center justify-center`}>
+                    <div className="relative z-10 flex flex-col items-center justify-center gap-0.5">
+                      <div className={`${iconSize} leading-none`}>{badge.icon}</div>
+                      <div className={`text-gray-900 font-extrabold ${nameSize} leading-tight tracking-wide`}>
                         {badge.name}
                       </div>
-                      <div className="text-gray-500 font-bold text-[5px] sm:text-[6px] md:text-[7px] mt-0.5 tracking-wider uppercase">
+                      <div className={`text-gray-500 font-bold ${subtitleSize} tracking-wider uppercase`}>
                         {badge.subtitle}
                       </div>
                     </div>

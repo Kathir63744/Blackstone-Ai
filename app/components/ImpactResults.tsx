@@ -51,36 +51,32 @@ const metrics = [
     title: "Less Manual Work",
     description: "Automate repetitive tasks and reduce dependency.",
     icon: Zap,
-    x: "18%",
-    y: "28%",
     align: "left",
+    position: "top",
   },
   {
     metric: "4x",
     title: "Faster Decision Making",
     description: "Real-time insights that help you decide with confidence.",
     icon: TrendingUp,
-    x: "82%",
-    y: "28%",
     align: "right",
+    position: "top",
   },
   {
     metric: "100+",
     title: "Connected Systems",
     description: "Seamlessly integrate with your existing technology.",
     icon: Database,
-    x: "18%",
-    y: "72%",
     align: "left",
+    position: "bottom",
   },
   {
     metric: "5 Day",
     title: "Implementation",
     description: "Go live in days, not months with our rapid deployment.",
     icon: Clock,
-    x: "82%",
-    y: "72%",
     align: "right",
+    position: "bottom",
   },
 ];
 
@@ -220,38 +216,39 @@ export default function ImpactResults() {
       }`}
     >
       {/* Background Grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#f0f4ff_1px,transparent_1px),linear-gradient(to_bottom,#f0f4ff_1px,transparent_1px)] bg-[size:60px_60px] opacity-30" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#f0f4ff_1px,transparent_1px),linear-gradient(to_bottom,#f0f4ff_1px,transparent_1px)] bg-[size:30px_30px sm:60px_60px] opacity-30" />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6">
-        <section className="relative w-full mb-8 overflow-hidden bg-white border-y border-slate-200">
+      <div className="relative z-10 max-w-6xl mx-auto px-3 sm:px-6">
+        {/* Trusted By Section - Mobile optimized */}
+        <section className="relative w-full mb-6 sm:mb-10 overflow-hidden bg-white border-y border-slate-200">
 
           {/* Top Accent */}
           <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-amber-500 to-transparent" />
 
-          <div className="py-8">
+          <div className="py-4 sm:py-8">
 
-            {/* Label Row */}
-            <div className="flex items-center justify-center gap-6 mb-8 px-6">
-              <div className="h-px flex-1 max-w-[120px] bg-slate-200" />
+            {/* Label Row - Mobile optimized */}
+            <div className="flex items-center justify-center gap-2 sm:gap-6 mb-4 sm:mb-8 px-3 sm:px-6">
+              <div className="h-px flex-1 max-w-[40px] sm:max-w-[120px] bg-slate-200" />
 
-              <span className="text-[11px] uppercase tracking-[0.35em] text-slate-700 font-semibold whitespace-nowrap">
+              <span className="text-[8px] sm:text-[12px] uppercase tracking-[0.25em] sm:tracking-[0.40em] text-slate-700 font-semibold whitespace-nowrap text-center">
                 Trusted By Leading Hotel Brands
               </span>
 
-              <div className="h-px flex-1 max-w-[120px] bg-slate-200" />
+              <div className="h-px flex-1 max-w-[40px] sm:max-w-[120px] bg-slate-200" />
             </div>
 
-            {/* Full Width Marquee */}
+            {/* Full Width Marquee - Mobile optimized */}
             <div className="relative overflow-hidden">
 
               {/* Left Fade */}
-              <div className="absolute left-0 top-0 z-20 h-full w-32 bg-gradient-to-r from-white via-white to-transparent" />
+              <div className="absolute left-0 top-0 z-20 h-full w-12 sm:w-32 bg-gradient-to-r from-white via-white to-transparent" />
 
               {/* Right Fade */}
-              <div className="absolute right-0 top-0 z-20 h-full w-32 bg-gradient-to-l from-white via-white to-transparent" />
+              <div className="absolute right-0 top-0 z-20 h-full w-12 sm:w-32 bg-gradient-to-l from-white via-white to-transparent" />
 
               <motion.div
-                className="flex items-center gap-32 whitespace-nowrap"
+                className="flex items-center gap-12 sm:gap-32 whitespace-nowrap"
                 animate={{
                   x: ["0%", "-50%"],
                 }}
@@ -269,10 +266,10 @@ export default function ImpactResults() {
                     <Image
                       src={brand.logo}
                       alt={brand.name}
-                      width={140}
-                      height={50}
+                      width={80}
+                      height={30}
                       className="
-                        h-12
+                        h-8 sm:h-12
                         w-auto
                         object-contain
                         opacity-60
@@ -291,48 +288,48 @@ export default function ImpactResults() {
           </div>
         </section>
 
-        {/* Header */}
-        <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900">
+        {/* Header - Mobile optimized */}
+        <div className="text-center mb-6 sm:mb-10">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900">
             Real Impact.
             <span className="block bg-gradient-to-r from-amber-600 to-amber-500 bg-clip-text text-transparent">
               Measurable Results.
             </span>
           </h2>
 
-          <p className="mt-2 text-sm text-slate-500 max-w-2xl mx-auto">
+          <p className="mt-1.5 sm:mt-2 text-[11px] sm:text-sm text-slate-500 max-w-2xl mx-auto px-2">
             Zotal AI helps hotels streamline operations and accelerate growth.
           </p>
         </div>
 
         {/* Desktop Network Layout */}
-        <div className="relative h-[420px] hidden lg:block">
+        <div className="relative h-[520px] hidden lg:block">
           {/* SVG Connection Lines */}
           <svg className="absolute inset-0 w-full h-full">
             {/* Curved lines from center to each card */}
             <path 
-              d="M 50% 50% Q 32% 36%, 18% 28%" 
+              d="M 50% 50% C 35% 35%, 25% 28%, 12% 32%" 
               stroke="#93c5fd" 
               strokeWidth="1.5" 
               fill="none" 
               opacity="0.5"
             />
             <path 
-              d="M 50% 50% Q 68% 36%, 82% 28%" 
+              d="M 50% 50% C 65% 35%, 75% 28%, 88% 32%" 
               stroke="#93c5fd" 
               strokeWidth="1.5" 
               fill="none" 
               opacity="0.5"
             />
             <path 
-              d="M 50% 50% Q 32% 64%, 18% 72%" 
+              d="M 50% 50% C 35% 65%, 25% 72%, 12% 68%" 
               stroke="#93c5fd" 
               strokeWidth="1.5" 
               fill="none" 
               opacity="0.5"
             />
             <path 
-              d="M 50% 50% Q 68% 64%, 82% 72%" 
+              d="M 50% 50% C 65% 65%, 75% 72%, 88% 68%" 
               stroke="#93c5fd" 
               strokeWidth="1.5" 
               fill="none" 
@@ -341,7 +338,7 @@ export default function ImpactResults() {
 
             {/* Dashed overlay */}
             <path 
-              d="M 50% 50% Q 32% 36%, 18% 28%" 
+              d="M 50% 50% C 35% 35%, 25% 28%, 12% 32%" 
               stroke="#60a5fa" 
               strokeWidth="0.8" 
               fill="none" 
@@ -349,7 +346,7 @@ export default function ImpactResults() {
               strokeDasharray="3, 5"
             />
             <path 
-              d="M 50% 50% Q 68% 36%, 82% 28%" 
+              d="M 50% 50% C 65% 35%, 75% 28%, 88% 32%" 
               stroke="#60a5fa" 
               strokeWidth="0.8" 
               fill="none" 
@@ -357,7 +354,7 @@ export default function ImpactResults() {
               strokeDasharray="3, 5"
             />
             <path 
-              d="M 50% 50% Q 32% 64%, 18% 72%" 
+              d="M 50% 50% C 35% 65%, 25% 72%, 12% 68%" 
               stroke="#60a5fa" 
               strokeWidth="0.8" 
               fill="none" 
@@ -365,7 +362,7 @@ export default function ImpactResults() {
               strokeDasharray="3, 5"
             />
             <path 
-              d="M 50% 50% Q 68% 64%, 82% 72%" 
+              d="M 50% 50% C 65% 65%, 75% 72%, 88% 68%" 
               stroke="#60a5fa" 
               strokeWidth="0.8" 
               fill="none" 
@@ -374,60 +371,100 @@ export default function ImpactResults() {
             />
 
             {/* Connection dots */}
-            <circle cx="18%" cy="28%" r="2.5" fill="#60a5fa" opacity="0.5" />
-            <circle cx="82%" cy="28%" r="2.5" fill="#60a5fa" opacity="0.5" />
-            <circle cx="18%" cy="72%" r="2.5" fill="#60a5fa" opacity="0.5" />
-            <circle cx="82%" cy="72%" r="2.5" fill="#60a5fa" opacity="0.5" />
+            <circle cx="12%" cy="32%" r="3" fill="#60a5fa" opacity="0.5" />
+            <circle cx="88%" cy="32%" r="3" fill="#60a5fa" opacity="0.5" />
+            <circle cx="12%" cy="68%" r="3" fill="#60a5fa" opacity="0.5" />
+            <circle cx="88%" cy="68%" r="3" fill="#60a5fa" opacity="0.5" />
           </svg>
 
-          {/* Metric Cards */}
-          {metrics.map((item, i) => {
-            const Icon = item.icon;
-            const isLeft = item.align === "left";
-
-            return (
-              <div
-                key={i}
-                ref={metricRefs[i]}
-                className={`absolute w-[300px] -mt-14 -translate-x-1/2 -translate-y-1/2 transition-all duration-700 ease-out ${
-                  metricVisible[i]
-                    ? 'opacity-100 translate-y-0' 
-                    : 'opacity-0 translate-y-12'
-                }`}
-                style={{ left: item.x, top: item.y, transitionDelay: `${i * 150 + 100}ms` }}
-              >
-                <div className={`bg-white border border-blue-100/60 p-4 rounded-xl shadow-sm ${isLeft ? 'text-left' : 'text-right'}`}>
-                  <div className={`flex ${isLeft ? 'justify-start' : 'justify-end'} mb-2`}>
-                    <div className="w-15 h-10 rounded-lg bg-amber-50 flex items-center justify-center">
-                      <Icon className="w-4 h-4 text-amber-600" />
+          {/* Left Column Cards - Equal width and spacing */}
+          <div className="absolute -left-12 top-1/2 -translate-y-1/2 flex flex-col gap-6 w-[360px]">
+            {metrics.filter(m => m.align === "left").map((item, i) => {
+              const Icon = item.icon;
+              const index = metrics.indexOf(item);
+              
+              return (
+                <div
+                  key={index}
+                  ref={metricRefs[index]}
+                  className={`transition-all duration-700 ease-out ${
+                    metricVisible[index]
+                      ? 'opacity-100 translate-x-0' 
+                      : 'opacity-0 -translate-x-12'
+                  }`}
+                  style={{ transitionDelay: `${index * 150 + 100}ms` }}
+                >
+                  <div className="bg-white border border-blue-100/60 p-5 rounded-xl shadow-sm text-left h-full">
+                    <div className="flex justify-start mb-2">
+                      <div className="w-12 h-12 rounded-lg bg-amber-50 flex items-center justify-center">
+                        <Icon className="w-5 h-5 text-amber-600" />
+                      </div>
                     </div>
+
+                    <h3 className="text-2xl font-bold text-slate-900">
+                      {item.metric}
+                    </h3>
+
+                    <p className="text-md font-medium text-slate-700 mt-0.5">
+                      {item.title}
+                    </p>
+
+                    <p className="mt-1 text-[12.5px] font-semibold text-slate-600 leading-relaxed">
+                      {item.description}
+                    </p>
                   </div>
-
-                  <h3 className="text-2xl font-bold text-slate-900">
-                    {item.metric}
-                  </h3>
-
-                  <p className="text-sm font-medium text-slate-700 mt-0.5">
-                    {item.title}
-                  </p>
-
-                  <p className="mt-1 text-[10px] text-slate-600 leading-relaxed">
-                    {item.description}
-                  </p>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
 
-          {/* Center Hub */}
+          {/* Right Column Cards - Equal width and spacing */}
+          <div className="absolute -right-14 top-1/2 -translate-y-1/2 flex flex-col gap-6 w-[380px]">
+            {metrics.filter(m => m.align === "right").map((item, i) => {
+              const Icon = item.icon;
+              const index = metrics.indexOf(item);
+              
+              return (
+                <div
+                  key={index}
+                  ref={metricRefs[index]}
+                  className={`transition-all duration-700 ease-out ${
+                    metricVisible[index]
+                      ? 'opacity-100 translate-x-0' 
+                      : 'opacity-0 translate-x-12'
+                  }`}
+                  style={{ transitionDelay: `${index * 150 + 100}ms` }}
+                >
+                  <div className="bg-white border border-blue-100/60 p-5 rounded-xl shadow-sm text-right h-full">
+                    <div className="flex justify-end mb-2">
+                      <div className="w-12 h-12 rounded-lg bg-amber-50 flex items-center justify-center">
+                        <Icon className="w-5 h-5 text-amber-600" />
+                      </div>
+                    </div>
+
+                    <h3 className="text-2xl font-bold text-slate-900">
+                      {item.metric}
+                    </h3>
+
+                    <p className="text-md font-medium text-slate-700 mt-0.5">
+                      {item.title}
+                    </p>
+
+                    <p className="mt-1 text-[12.5px] font-semibold text-slate-600 leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Center Hub - Equal size with proper gap */}
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-            <div className="relative w-[360px] h-[360px]">
-              {/* Glow */}
-              <div className="absolute inset-10 rounded-full" />
-
+            <div className="relative w-[400px] h-[400px]">
               {/* Center Video */}
               <motion.div
-                className="absolute inset-2 rounded-full overflow-hidden"
+                className="absolute inset-0 rounded-full overflow-hidden border-4 border-amber-200/30 shadow-2xl"
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
@@ -447,25 +484,37 @@ export default function ImpactResults() {
           </div>
         </div>
 
-        {/* Mobile Layout */}
-        <div className="grid lg:hidden gap-3 mt-6">
+        {/* Mobile Layout - Enhanced with better spacing and design */}
+        <div className="grid lg:hidden gap-3 mt-4 sm:mt-6">
           {metrics.map((item, i) => {
             const Icon = item.icon;
             return (
               <div
                 key={i}
                 ref={mobileRefs[i]}
-                className={`bg-white border border-blue-100 rounded-xl p-3 shadow-sm transition-all duration-700 ease-out ${
+                className={`bg-white border border-blue-100 rounded-xl p-4 sm:p-5 shadow-sm transition-all duration-700 ease-out ${
                   mobileVisible[i]
                     ? 'opacity-100 translate-y-0' 
                     : 'opacity-0 translate-y-12'
                 }`}
                 style={{ transitionDelay: `${i * 100 + 50}ms` }}
               >
-                <Icon className="w-4 h-4 text-blue-600 mb-1" />
-                <h3 className="text-xl font-bold">{item.metric}</h3>
-                <p className="text-xs font-semibold text-slate-700">{item.title}</p>
-                <p className="text-[10px] text-slate-400 mt-0.5">{item.description}</p>
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-amber-50 flex items-center justify-center flex-shrink-0">
+                    <Icon className="w-5 h-5 text-amber-600" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-xl font-bold text-slate-900">
+                      {item.metric}
+                    </h3>
+                    <p className="text-sm font-semibold text-slate-700">
+                      {item.title}
+                    </p>
+                    <p className="text-[11px] text-slate-500 mt-0.5 leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
               </div>
             );
           })}
