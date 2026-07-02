@@ -1638,38 +1638,37 @@ const paginatedProducts = products.slice(
     </div>
   </section>
 </FadeInSection>
-
 <FadeInSection delay={250}>
-  <section className="relative py-16 sm:py-20 lg:py-24 overflow-hidden bg-[#F7F7F4]">
+  <section className="relative py-12 sm:py-16 lg:py-20 overflow-hidden bg-[#F7F7F4]">
     
     {/* Background Effects */}
     <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-      <div className="absolute -top-40 -left-40 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-cyan-200/30 rounded-full blur-[100px] sm:blur-[140px]" />
-      <div className="absolute bottom-0 right-0 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-blue-200/30 rounded-full blur-[100px] sm:blur-[140px]" />
+      <div className="absolute -top-40 -left-40 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-amber-200/30 rounded-full blur-[100px] sm:blur-[140px]" />
+      <div className="absolute bottom-0 right-0 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-orange-200/30 rounded-full blur-[100px] sm:blur-[140px]" />
     </div>
 
     <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
 
-      <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-6 sm:gap-8 lg:gap-10 items-start">
+      <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-stretch">
 
         {/* LEFT SIDE */}
-        <div className="space-y-4 sm:space-y-5 lg:space-y-6">
+        <div className="flex flex-col space-y-4 sm:space-y-5 lg:space-y-6">
 
           <div>
-            <div className="inline-block mb-4 sm:mb-6 lg:mb-8 relative">
-              <span className="inline-block text-[8px] sm:text-[10px] font-bold tracking-[0.15em] sm:tracking-[0.2em] uppercase text-white px-3 sm:px-6 py-1.5 sm:py-2 bg-gradient-to-r from-amber-500 to-amber-500 rounded-lg shadow-lg shadow-indigo-500/25 relative">
+            <div className="inline-block mb-3 sm:mb-4 lg:mb-6 relative">
+              <span className="inline-block text-[8px] sm:text-[10px] font-bold tracking-[0.15em] sm:tracking-[0.2em] uppercase text-white px-3 sm:px-6 py-1.5 sm:py-2 bg-gradient-to-r from-amber-500 to-orange-500 rounded-lg shadow-lg shadow-amber-500/25 relative">
                 Hospitality Growth
                 <span className="absolute -top-1 -right-1 w-3 h-3 sm:w-4 sm:h-4 bg-white/20 backdrop-blur-sm rounded-tr-lg rounded-bl-lg" />
                 <span className="absolute -bottom-1 -left-1 w-3 h-3 sm:w-4 sm:h-4 bg-white/20 backdrop-blur-sm rounded-bl-lg rounded-tr-lg" />
               </span>
             </div>
 
-            <h2 className="mt-3 sm:mt-4 text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-slate-900 leading-tight">
+            <h2 className="mt-2 sm:mt-3 text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-slate-900 leading-tight">
               See how modern hotels
               outperform the competition.
             </h2>
 
-            <p className="mt-3 sm:mt-4 lg:mt-5 text-slate-600 text-base sm:text-lg leading-relaxed max-w-2xl">
+            <p className="mt-2 sm:mt-3 lg:mt-4 text-slate-600 text-sm sm:text-base leading-relaxed max-w-2xl">
               Automate operations, increase direct bookings,
               optimize revenue, and deliver exceptional guest
               experiences from one intelligent platform.
@@ -1677,7 +1676,7 @@ const paginatedProducts = products.slice(
           </div>
 
           {/* Feature Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3">
 
             {[
               {
@@ -1697,21 +1696,23 @@ const paginatedProducts = products.slice(
                 key={item.title}
                 className="
                   bg-white
-                  rounded-2xl sm:rounded-3xl
-                  p-4 sm:p-5
+                  rounded-xl sm:rounded-2xl
+                  p-3 sm:p-4
                   border
                   border-slate-200
                   shadow-sm
                   hover:shadow-xl
+                  hover:border-amber-300/50
                   transition-all
                   duration-300
+                  hover:-translate-y-1
                 "
               >
-                <h4 className="font-semibold text-slate-900 text-base sm:text-lg">
+                <h4 className="font-semibold text-slate-900 text-sm sm:text-base">
                   {item.title}
                 </h4>
 
-                <p className="mt-2 sm:mt-3 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                <p className="mt-1 sm:mt-2 text-xs text-slate-600 leading-relaxed">
                   {item.desc}
                 </p>
               </div>
@@ -1719,200 +1720,174 @@ const paginatedProducts = products.slice(
           </div>
 
           {/* Success Story */}
-          <div className="rounded-[24px] sm:rounded-[28px] lg:rounded-[32px] bg-gradient-to-br from-slate-900 to-slate-800 p-6 sm:p-8 shadow-xl">
+          <div className="rounded-2xl sm:rounded-3xl bg-gradient-to-br from-slate-900 to-slate-800 p-5 sm:p-6 shadow-xl flex-1">
 
             <div className="flex items-end gap-3 sm:gap-4">
 
-              <h3 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white">
+              <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
                 39%
               </h3>
 
-              <p className="font-semibold text-slate-200 text-sm sm:text-base max-w-xs">
+              <p className="font-semibold text-slate-200 text-xs sm:text-sm max-w-xs">
                 Increase in RevPAR through automation and
                 direct booking growth.
               </p>
 
             </div>
 
-            <blockquote className="mt-6 sm:mt-8 text-lg sm:text-xl font-medium text-white leading-relaxed">
+            <blockquote className="mt-4 sm:mt-5 text-base sm:text-lg font-medium text-white leading-relaxed">
               "The platform transformed how we manage
               bookings and guest communication. Occupancy,
               revenue and guest satisfaction improved
               significantly."
             </blockquote>
 
-            <div className="mt-6 sm:mt-8">
+            <div className="mt-4 sm:mt-5">
               <p className="font-bold text-white text-sm sm:text-base">
                 Romain Stern
               </p>
 
-              <p className="text-slate-400 text-xs sm:text-sm">
+              <p className="text-slate-400 text-xs">
                 Head of Revenue Strategy
               </p>
             </div>
 
           </div>
 
-          {/* Trust Badges */}
-          <div className="flex flex-wrap gap-2 sm:gap-4">
-
-            {[
-              "Best PMS 2025",
-              "Top Hospitality Tech",
-              "Hotelier Choice",
-            ].map((badge) => (
-              <div
-                key={badge}
-                className="
-                  bg-white
-                  border
-                  border-slate-200
-                  rounded-full
-                  px-3 sm:px-5
-                  py-2 sm:py-3
-                  text-xs sm:text-sm
-                  font-medium
-                  text-slate-700
-                  shadow-sm
-                "
-              >
-                {badge}
-              </div>
-            ))}
-
-          </div>
-
         </div>
 
-        {/* RIGHT SIDE PREMIUM FORM */}
+        {/* RIGHT SIDE - Premium Form */}
         <div
           className="
             relative
             overflow-hidden
-            rounded-[28px] sm:rounded-[32px] lg:rounded-[40px]
-            p-6 sm:p-8 lg:p-10
+            rounded-2xl sm:rounded-3xl lg:rounded-[32px]
+            p-5 sm:p-6 lg:p-8
             bg-gradient-to-br
             from-slate-950
             via-slate-900
             to-slate-800
             border border-slate-700/50
-            shadow-[0_30px_80px_rgba(15,23,42,0.30)] sm:shadow-[0_40px_120px_rgba(15,23,42,0.35)]
+            shadow-[0_20px_60px_rgba(15,23,42,0.25)] sm:shadow-[0_30px_80px_rgba(15,23,42,0.30)]
+            flex flex-col
           "
         >
 
           {/* Glow Effects */}
-          <div className="absolute -top-32 -right-24 w-48 sm:w-72 h-48 sm:h-72 bg-cyan-500/20 rounded-full blur-[80px] sm:blur-[120px]" />
-          <div className="absolute -bottom-32 -left-24 w-48 sm:w-72 h-48 sm:h-72 bg-blue-500/20 rounded-full blur-[80px] sm:blur-[120px]" />
+          <div className="absolute -top-32 -right-24 w-48 sm:w-72 h-48 sm:h-72 bg-amber-500/20 rounded-full blur-[80px] sm:blur-[120px]" />
+          <div className="absolute -bottom-32 -left-24 w-48 sm:w-72 h-48 sm:h-72 bg-orange-500/20 rounded-full blur-[80px] sm:blur-[120px]" />
           <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent" />
 
-          <div className="relative z-10">
+          <div className="relative z-10 flex flex-col flex-1">
 
             {/* Trust Badge */}
-            <div className="mb-4 sm:mb-6 flex items-center gap-2 sm:gap-3">
+            <div className="mb-3 sm:mb-4 flex items-center gap-2 sm:gap-3">
 
-              <div className="h-2 sm:h-3 w-2 sm:w-3 rounded-full bg-emerald-400 animate-pulse" />
+              <div className="h-1.5 sm:h-2 w-1.5 sm:w-2 rounded-full bg-emerald-400 animate-pulse" />
 
-              <span className="text-xs sm:text-sm font-medium text-slate-300">
+              <span className="text-[10px] sm:text-xs font-medium text-slate-300">
                 Trusted by 500+ Hotels & Resorts
               </span>
 
             </div>
 
-            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight">
-              Request a Personalized Demo
+            <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white leading-tight">
+              Request a Demo
             </h3>
 
-            <p className="mt-3 sm:mt-4 text-slate-300 text-sm sm:text-base leading-relaxed">
+            <p className="mt-2 sm:mt-3 text-slate-300 text-xs sm:text-sm leading-relaxed">
               Discover how Blackstone AI helps hotels increase
               bookings, automate operations, and deliver
               exceptional guest experiences.
             </p>
 
-            <form className="mt-6 sm:mt-8 space-y-4 sm:space-y-5">
+            <form className="mt-4 sm:mt-6 space-y-3 sm:space-y-4 flex-1 flex flex-col">
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <input
                   placeholder="First Name"
-                  className="h-12 sm:h-14 px-4 sm:px-5 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 text-white placeholder:text-slate-400 outline-none focus:border-cyan-400 text-sm sm:text-base"
+                  className="h-10 sm:h-11 px-3 sm:px-4 rounded-lg sm:rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-slate-400 outline-none focus:border-amber-400 text-xs sm:text-sm transition"
                 />
 
                 <input
                   placeholder="Last Name"
-                  className="h-12 sm:h-14 px-4 sm:px-5 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 text-white placeholder:text-slate-400 outline-none focus:border-cyan-400 text-sm sm:text-base"
+                  className="h-10 sm:h-11 px-3 sm:px-4 rounded-lg sm:rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-slate-400 outline-none focus:border-amber-400 text-xs sm:text-sm transition"
                 />
               </div>
 
               <input
                 placeholder="Business Email"
-                className="w-full h-12 sm:h-14 px-4 sm:px-5 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 text-white placeholder:text-slate-400 outline-none focus:border-cyan-400 text-sm sm:text-base"
+                className="w-full h-10 sm:h-11 px-3 sm:px-4 rounded-lg sm:rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-slate-400 outline-none focus:border-amber-400 text-xs sm:text-sm transition"
               />
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <input
                   placeholder="Phone Number"
-                  className="h-12 sm:h-14 px-4 sm:px-5 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 text-white placeholder:text-slate-400 outline-none focus:border-cyan-400 text-sm sm:text-base"
+                  className="h-10 sm:h-11 px-3 sm:px-4 rounded-lg sm:rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-slate-400 outline-none focus:border-amber-400 text-xs sm:text-sm transition"
                 />
 
                 <input
                   placeholder="Property Name"
-                  className="h-12 sm:h-14 px-4 sm:px-5 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 text-white placeholder:text-slate-400 outline-none focus:border-cyan-400 text-sm sm:text-base"
+                  className="h-10 sm:h-11 px-3 sm:px-4 rounded-lg sm:rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-slate-400 outline-none focus:border-amber-400 text-xs sm:text-sm transition"
                 />
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
 
-                <select className="h-12 sm:h-14 px-4 sm:px-5 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 text-slate-300 text-sm sm:text-base">
-                  <option>Property Type</option>
-                  <option>Hotel</option>
-                  <option>Resort</option>
-                  <option>Villa</option>
-                  <option>Homestay</option>
+                <select className="h-10 sm:h-11 px-3 sm:px-4 rounded-lg sm:rounded-xl bg-white/5 border border-white/10 text-slate-300 text-xs sm:text-sm focus:border-amber-400 transition">
+                  <option className="text-slate-900">Property Type</option>
+                  <option className="text-slate-900">Hotel</option>
+                  <option className="text-slate-900">Resort</option>
+                  <option className="text-slate-900">Villa</option>
+                  <option className="text-slate-900">Homestay</option>
                 </select>
 
-                <select className="h-12 sm:h-14 px-4 sm:px-5 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 text-slate-300 text-sm sm:text-base">
-                  <option>Number of Rooms</option>
-                  <option>1-20</option>
-                  <option>21-50</option>
-                  <option>51-100</option>
-                  <option>100+</option>
+                <select className="h-10 sm:h-11 px-3 sm:px-4 rounded-lg sm:rounded-xl bg-white/5 border border-white/10 text-slate-300 text-xs sm:text-sm focus:border-amber-400 transition">
+                  <option className="text-slate-900">Number of Rooms</option>
+                  <option className="text-slate-900">1-20</option>
+                  <option className="text-slate-900">21-50</option>
+                  <option className="text-slate-900">51-100</option>
+                  <option className="text-slate-900">100+</option>
                 </select>
 
               </div>
 
               <textarea
-                rows={4}
+                rows={3}
                 placeholder="Tell us your biggest operational challenge..."
                 className="
                   w-full
-                  p-4 sm:p-5
-                  rounded-xl sm:rounded-2xl
+                  p-3 sm:p-4
+                  rounded-lg sm:rounded-xl
                   bg-white/5
                   border border-white/10
                   text-white
                   placeholder:text-slate-400
                   resize-none
                   outline-none
-                  focus:border-cyan-400
-                  text-sm sm:text-base
+                  focus:border-amber-400
+                  text-xs sm:text-sm
+                  transition
+                  flex-1
                 "
               />
 
               {/* Benefits */}
-              <div className="grid grid-cols-2 gap-2 sm:gap-3">
+              <div className="grid grid-cols-2 gap-2">
 
-                <div className="text-xs sm:text-sm text-slate-300">
+                <div className="text-[10px] sm:text-xs text-slate-300">
                   ✓ Free Consultation
                 </div>
 
-                <div className="text-xs sm:text-sm text-slate-300">
+                <div className="text-[10px] sm:text-xs text-slate-300">
                   ✓ Custom Walkthrough
                 </div>
 
-                <div className="text-xs sm:text-sm text-slate-300">
+                <div className="text-[10px] sm:text-xs text-slate-300">
                   ✓ No Commitment
                 </div>
 
-                <div className="text-xs sm:text-sm text-slate-300">
+                <div className="text-[10px] sm:text-xs text-slate-300">
                   ✓ Fast Implementation
                 </div>
 
@@ -1923,25 +1898,26 @@ const paginatedProducts = products.slice(
                 type="submit"
                 className="
                   w-full
-                  h-12 sm:h-14
+                  h-10 sm:h-11
                   rounded-full
                   bg-gradient-to-r
-                  from-slate-500
-                  via-blue-900
-                  to-slate-500
+                  from-amber-500
+                  to-amber-500
                   text-white
                   font-semibold
-                  text-sm sm:text-base
+                  text-xs sm:text-sm
                   shadow-lg
                   transition-all
                   duration-300
                   hover:scale-[1.02]
+                  hover:shadow-amber-500/25
+                  mt-auto
                 "
               >
                 Schedule My Demo
               </button>
 
-              <p className="text-center text-[10px] sm:text-xs text-slate-400">
+              <p className="text-center text-[8px] sm:text-[10px] text-slate-400 mt-2">
                 By submitting this form, you agree to receive
                 communications regarding Blackstone AI products
                 and services.

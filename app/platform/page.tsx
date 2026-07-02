@@ -267,7 +267,7 @@ const renderHeroSection = () => (
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className="relative overflow-hidden mt-10 bg-white pt-8 pb-8 lg:pt-12 lg:pb-12"
+      className="relative overflow-hidden mt-15 bg-white pt-4 pb-4 lg:pt-10 lg:pb-10"
     >
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-orange-50 via-white to-amber-50" />
@@ -276,257 +276,391 @@ const renderHeroSection = () => (
       <div className="absolute left-20 top-20 w-80 h-80 rounded-full bg-orange-300/20 blur-[120px]" />
       <div className="absolute right-20 bottom-10 w-80 h-80 rounded-full bg-orange-200/20 blur-[120px]" />
 
-      <div className="relative max-w-7xl mx-auto px-6">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
         
-        {/* Floating Layout */}
-        <div className="relative h-[700px]">
-
-          {/* LEFT TOP */}
-          <FadeInSection delay={0.1}>
-            <HeroCard
-              className="absolute left-0 top-0"
-              card={overviewCards[0]}
-            />
-          </FadeInSection>
-
-          {/* LEFT CENTER */}
-          <FadeInSection delay={0.2}>
-            <HeroCard
-              className="absolute left-44 top-[235px]"
-              card={overviewCards[1]}
-            />
-          </FadeInSection>
-
-          {/* LEFT BOTTOM */}
-          <FadeInSection delay={0.3}>
-            <HeroCard
-              className="absolute left-0 bottom-0"
-              card={overviewCards[2]}
-            />
-          </FadeInSection>
-
-          {/* CENTER */}
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
-          >
-            <div className="relative">
-
-              {/* Glow */}
-              <div className="absolute inset-0 scale-[1.45] rounded-full bg-orange-400/20 blur-[90px]" />
-
-              {/* Ring */}
-              <div className="relative w-[270px] h-[270px] rounded-full border-[14px] border-orange-100 bg-white/70 backdrop-blur">
-
-                {/* Inner Circle */}
-                <div className="absolute inset-[18px] rounded-full bg-gradient-to-br from-orange-300 via-orange-400 to-amber-400 shadow-[0_25px_80px_rgba(249,115,22,.22)] flex flex-col items-center justify-center">
-
-                  <div className="text-center">
-                    <div className="text-4xl font-black text-white">6</div>
-                    <p className="mt-1 text-center text-orange-50 text-sm leading-6">
-                      Platform
-                      <br />
-                      Modules
-                    </p>
-                  </div>
-
-                </div>
-              </div>
-
-            </div>
-          </motion.div>
-
-          {/* RIGHT TOP */}
-          <FadeInSection delay={0.15}>
-            <HeroCard
-              className="absolute right-0 top-0"
-              card={overviewCards[3]}
-            />
-          </FadeInSection>
-
-          {/* RIGHT CENTER */}
-          <FadeInSection delay={0.25}>
-            <HeroCard
-              className="absolute right-44 top-[235px]"
-              card={overviewCards[4]}
-            />
-          </FadeInSection>
-
-          {/* RIGHT BOTTOM */}
-          <FadeInSection delay={0.35}>
-            <HeroCard
-              className="absolute right-0 bottom-0"
-              card={overviewCards[5]}
-            />
-          </FadeInSection>
-
-          {/* HEADING SECTION - Positioned above the circle, centered */}
-          <div className="absolute left-1/2 -translate-x-1/2 w-full max-w-3xl text-center z-10" style={{ top: '30%', transform: 'translate(1%, 10%) translateY(-195px)' }}>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              <span className="inline-block text-[10px] font-bold tracking-[0.2em] uppercase text-orange-600 px-4 py-1.5 bg-orange-50 rounded-full border border-orange-200/50 mb-3">
-                Platform Solutions
-              </span>
-              
-              <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900 leading-[1.1] tracking-[-0.02em]">
-                Complete Hospitality
-                <br />
-                <span className="bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent">
-                  Platform Ecosystem
-                </span>
-              </h1>
-              
-              <p className="mt-2 text-sm md:text-base text-slate-500 max-w-2xl mx-auto">
-                Six powerful solutions designed for every type of hospitality business — 
-                from independent hotels to global chains.
-              </p>
-            </motion.div>
+        {/* Floating Layout - Mobile Responsive */}
+        <div className="relative h-auto lg:h-[620px]">
+          
+          {/* Mobile Layout - Stack Cards Vertically */}
+          <div className="lg:hidden grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {overviewCards.map((card, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ 
+                  duration: 0.5, 
+                  delay: index * 0.08,
+                  ease: [0.25, 0.46, 0.45, 0.94]
+                }}
+              >
+                <HeroCardMobile card={card} />
+              </motion.div>
+            ))}
           </div>
 
+          {/* Desktop Layout */}
+          <div className="hidden lg:block relative h-[620px]">
+
+            {/* LEFT TOP - Slide in from left */}
+            <motion.div
+              initial={{ opacity: 0, x: -60 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ 
+                duration: 0.7, 
+                delay: 0.1,
+                ease: [0.25, 0.46, 0.45, 0.94]
+              }}
+              className="absolute left-0 top-0"
+            >
+              <HeroCard card={overviewCards[0]} />
+            </motion.div>
+
+            {/* LEFT CENTER - Slide in from left */}
+            <motion.div
+              initial={{ opacity: 0, x: -60 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ 
+                duration: 0.7, 
+                delay: 0.25,
+                ease: [0.25, 0.46, 0.45, 0.94]
+              }}
+              className="absolute left-36 top-[180px]"
+            >
+              <HeroCard card={overviewCards[1]} />
+            </motion.div>
+
+            {/* LEFT BOTTOM - Slide in from left with fade */}
+            <motion.div
+              initial={{ opacity: 0, x: -60 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ 
+                duration: 0.7, 
+                delay: 0.4,
+                ease: [0.25, 0.46, 0.45, 0.94]
+              }}
+              className="absolute left-60 bottom-10"
+            >
+              <HeroCard card={overviewCards[2]} />
+            </motion.div>
+
+            {/* CENTER - Scale in */}
+            <motion.div
+              initial={{ scale: 0.6, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ 
+                duration: 0.8, 
+                delay: 0.5,
+                ease: [0.34, 1.56, 0.64, 1]
+              }}
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
+            >
+              <div className="relative">
+                <div className="relative w-[220px] md:w-[260px] h-[220px] md:h-[260px] rounded-full">
+                  <motion.div
+                    className="relative w-full h-full rounded-full overflow-hidden"
+                    animate={{
+                      y: [0, -8, 0],
+                    }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  >
+                    <video
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-full object-cover scale-[1.8]"
+                      poster="/platform-center-poster.jpg"
+                    >
+                      <source src="/plat-video1.mp4" type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-transparent z-5" />
+                    <div className="absolute top-0 left-0 w-20 h-20 bg-gradient-to-br from-white/20 to-transparent rounded-full blur-xl" />
+                    <div className="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-white/10 to-transparent rounded-full blur-xl" />
+                    <div className="absolute top-[10%] left-[15%] w-[70%] h-[2px] bg-gradient-to-r from-transparent via-white/30 to-transparent blur-sm" />
+                  </motion.div>
+
+                  {/* Floating Particles */}
+                  <motion.div
+                    animate={{
+                      y: [0, -15, 0],
+                      opacity: [0.3, 0.6, 0.3],
+                    }}
+                    transition={{
+                      duration: 3.5,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: 0.2,
+                    }}
+                    className="absolute -top-6 -right-6 w-4 h-4 rounded-full bg-orange-300/30 blur-md"
+                  />
+                  <motion.div
+                    animate={{
+                      y: [0, 12, 0],
+                      opacity: [0.2, 0.5, 0.2],
+                    }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: 0.5,
+                    }}
+                    className="absolute -bottom-6 -left-6 w-6 h-6 rounded-full bg-amber-300/30 blur-md"
+                  />
+                  <motion.div
+                    animate={{
+                      y: [0, -10, 0],
+                      opacity: [0.2, 0.4, 0.2],
+                    }}
+                    transition={{
+                      duration: 3.8,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: 0.8,
+                    }}
+                    className="absolute top-1/2 -right-8 w-3 h-3 rounded-full bg-orange-400/20 blur-sm"
+                  />
+                  <motion.div
+                    animate={{
+                      y: [0, 8, 0],
+                      opacity: [0.2, 0.4, 0.2],
+                    }}
+                    transition={{
+                      duration: 3.2,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: 1.1,
+                    }}
+                    className="absolute top-1/3 -left-8 w-3 h-3 rounded-full bg-amber-400/20 blur-sm"
+                  />
+                </div>
+              </div>
+            </motion.div>
+
+            {/* RIGHT TOP - Slide in from right */}
+            <motion.div
+              initial={{ opacity: 0, x: 60 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ 
+                duration: 0.7, 
+                delay: 0.15,
+                ease: [0.25, 0.46, 0.45, 0.94]
+              }}
+              className="absolute right-0 top-0"
+            >
+              <HeroCard card={overviewCards[3]} />
+            </motion.div>
+
+            {/* RIGHT CENTER - Slide in from right */}
+            <motion.div
+              initial={{ opacity: 0, x: 60 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ 
+                duration: 0.7, 
+                delay: 0.3,
+                ease: [0.25, 0.46, 0.45, 0.94]
+              }}
+              className="absolute right-36 top-[180px]"
+            >
+              <HeroCard card={overviewCards[4]} />
+            </motion.div>
+
+            {/* RIGHT BOTTOM - Slide in from right with fade */}
+            <motion.div
+              initial={{ opacity: 0, x: 60 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ 
+                duration: 0.7, 
+                delay: 0.45,
+                ease: [0.25, 0.46, 0.45, 0.94]
+              }}
+              className="absolute right-60 bottom-10"
+            >
+              <HeroCard card={overviewCards[5]} />
+            </motion.div>
+
+            {/* HEADING SECTION */}
+            <div className="absolute left-1/2 -translate-x-1/2 w-full max-w-3xl text-center z-10" style={{ top: '30%', transform: 'translate(0%, 0%) translateY(-155px)' }}>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ 
+                  duration: 0.8, 
+                  delay: 0.6,
+                  ease: [0.25, 0.46, 0.45, 0.94]
+                }}
+              >
+                <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-slate-900 leading-[1.1] tracking-[-0.02em]">
+                  Complete Hospitality
+                  <br />
+                  <span className="bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent">
+                    Platform Ecosystem
+                  </span>
+                </h1>
+              </motion.div>
+            </div>
+
+          </div>
         </div>
       </div>
     </motion.section>
   </FadeInSection>
 );
 
-  const HeroCard = ({
-    card,
-    className = "",
-  }: {
-    card: any;
-    className?: string;
-  }) => {
-    const Icon = card.icon;
+// Desktop Hero Card
+const HeroCard = ({
+  card,
+}: {
+  card: any;
+}) => {
+  const Icon = card.icon;
 
-    return (
-      <motion.div
-        whileHover={{
-          y: -8,
-          scale: 1.04,
+  return (
+    <motion.div
+      whileHover={{
+        y: -8,
+        scale: 1.08,
+      }}
+      transition={{
+        duration: 0.25,
+      }}
+      className="group w-[200px] rounded-2xl bg-white border border-orange-100 shadow-lg hover:shadow-2xl hover:border-orange-300 p-4 transition-all duration-300 cursor-pointer"
+    >
+      {/* Icon */}
+      <div
+        className="w-10 h-10 rounded-xl flex items-center justify-center"
+        style={{
+          background: `${card.color}15`,
         }}
-        transition={{
-          duration: 0.25,
-        }}
-        className={`${className} group w-[230px] rounded-2xl bg-white border border-orange-100 shadow-lg hover:shadow-2xl hover:border-orange-300 p-4 transition-all duration-300 cursor-pointer`}
       >
+        <Icon
+          size={18}
+          style={{
+            color: card.color,
+          }}
+        />
+      </div>
+
+      {/* Number */}
+      <span
+        className="mt-3 block text-[10px] font-bold uppercase tracking-[2px]"
+        style={{
+          color: card.color,
+        }}
+      >
+        {card.number}
+      </span>
+
+      {/* Title */}
+      <h3 className="mt-1.5 text-base font-bold text-slate-900 leading-tight">
+        {card.title}
+      </h3>
+
+      {/* Description */}
+      <p className="mt-1.5 text-xs leading-5 text-slate-500 line-clamp-2">
+        {card.description}
+      </p>
+
+      {/* Arrow */}
+      <div className="mt-3 flex items-center">
+        <ArrowRight
+          size={14}
+          className="text-orange-500 opacity-0 -translate-x-2 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300"
+        />
+      </div>
+
+      {/* Bottom Accent */}
+      <div
+        className="mt-3 h-1 w-0 rounded-full transition-all duration-300 group-hover:w-full"
+        style={{
+          background: `linear-gradient(90deg, ${card.color}, #f97316)`,
+        }}
+      />
+    </motion.div>
+  );
+};
+
+// Mobile Hero Card
+const HeroCardMobile = ({
+  card,
+}: {
+  card: any;
+}) => {
+  const Icon = card.icon;
+
+  return (
+    <motion.div
+      whileHover={{
+        y: -4,
+        scale: 1.02,
+      }}
+      transition={{
+        duration: 0.2,
+      }}
+      className="group rounded-2xl bg-white border border-orange-100 shadow-md hover:shadow-xl hover:border-orange-300 p-4 transition-all duration-300 cursor-pointer"
+    >
+      <div className="flex items-center gap-3">
         {/* Icon */}
         <div
-          className="w-12 h-12 rounded-xl flex items-center justify-center"
+          className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
           style={{
             background: `${card.color}15`,
           }}
         >
           <Icon
-            size={22}
+            size={18}
             style={{
               color: card.color,
             }}
           />
         </div>
 
-        {/* Number */}
-        <span
-          className="mt-4 block text-[11px] font-bold uppercase tracking-[2px]"
-          style={{
-            color: card.color,
-          }}
-        >
-          {card.number}
-        </span>
+        <div className="flex-1 min-w-0">
+          {/* Number */}
+          <span
+            className="text-[10px] font-bold uppercase tracking-[1px]"
+            style={{
+              color: card.color,
+            }}
+          >
+            {card.number}
+          </span>
 
-        {/* Title */}
-        <h3 className="mt-2 text-lg font-bold text-slate-900">
-          {card.title}
-        </h3>
+          {/* Title */}
+          <h3 className="text-sm font-bold text-slate-900 leading-tight">
+            {card.title}
+          </h3>
 
-        {/* Description */}
-        <p className="mt-2 text-sm leading-6 text-slate-500">
-          {card.description}
-        </p>
+          {/* Description */}
+          <p className="text-xs text-slate-500 line-clamp-1">
+            {card.description}
+          </p>
+        </div>
 
         {/* Arrow */}
-        <div className="mt-5 flex items-center">
-          <ArrowRight
-            size={16}
-            className="text-orange-500 opacity-0 -translate-x-2 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300"
-          />
-        </div>
-
-        {/* Bottom Accent */}
-        <div
-          className="mt-4 h-1 w-0 rounded-full transition-all duration-300 group-hover:w-full"
-          style={{
-            background: `linear-gradient(90deg, ${card.color}, #f97316)`,
-          }}
+        <ArrowRight
+          size={16}
+          className="text-orange-500 opacity-0 group-hover:opacity-100 transition-all duration-300 flex-shrink-0"
         />
-      </motion.div>
-    );
-  };
+      </div>
 
-  const renderOverviewSection = () => {
-    const ref = useRef<HTMLDivElement>(null);
-    const isInView = useInView(ref, { once: true, amount: 0.1 });
-    
-    return (
-      <section ref={ref} className="py-6 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap justify-center gap-3 md:gap-4">
-            {overviewCards.map((card, index) => {
-              const Icon = card.icon;
-              
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.3, delay: index * 0.05 }}
-                  whileHover={{ 
-                    y: -3,
-                    scale: 1.04,
-                    transition: { duration: 0.15 }
-                  }}
-                  className="group relative flex-shrink-0 w-[180px] p-3.5 rounded-xl bg-white border border-slate-200/60 shadow-sm hover:shadow-md transition-all duration-300"
-                >
-                  <div className="relative flex flex-col items-center text-center">
-                    <div 
-                      className="w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-300 group-hover:scale-110 mb-1.5"
-                      style={{
-                        background: `${card.color}10`,
-                      }}
-                    >
-                      <Icon size={16} style={{ color: card.color }} />
-                    </div>
-                    
-                    <span 
-                      className="text-[10px] font-bold mb-0.5"
-                      style={{ color: `${card.color}50` }}
-                    >
-                      {card.number}
-                    </span>
-                    
-                    <h3 className="text-xs font-semibold text-slate-900 leading-tight mb-0.5">
-                      {card.title}
-                    </h3>
-                    
-                    <p className="text-[10px] text-slate-500 leading-tight line-clamp-1">{card.description}</p>
-                    
-                    <div className="mt-1.5 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-0.5 group-hover:translate-y-0">
-                      <ArrowRight size={12} style={{ color: card.color }} />
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-    );
-  };
+      {/* Bottom Accent */}
+      <div
+        className="mt-2 h-0.5 w-0 rounded-full transition-all duration-300 group-hover:w-full"
+        style={{
+          background: `linear-gradient(90deg, ${card.color}, #f97316)`,
+        }}
+      />
+    </motion.div>
+  );
+};
+
 
   const renderPlatformSection = (section: PlatformSection, index: number) => {
     const ref = useRef<HTMLDivElement>(null);
@@ -650,7 +784,7 @@ const renderHeroSection = () => (
   return (
     <main>
       {renderHeroSection()}
-      {renderOverviewSection()}
+      
       {platformSections.map((section, index) => renderPlatformSection(section, index))}
       <Footer />
     </main>

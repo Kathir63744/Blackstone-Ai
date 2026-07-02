@@ -1,7 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
+  const pathname = usePathname();
+
+  // Check if link is active
+  const isActive = (path: string) => {
+    if (path === "/" && pathname === "/") return true;
+    if (path !== "/" && pathname.startsWith(path)) return true;
+    return false;
+  };
+
   return (
     <footer className="relative overflow-hidden">
 
@@ -22,8 +32,8 @@ export default function Footer() {
       </div>
 
       {/* Glow Effects */}
-      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[140px]" />
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-violet-500/10 rounded-full blur-[140px]" />
+      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-amber-500/10 rounded-full blur-[140px]" />
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-orange-500/10 rounded-full blur-[140px]" />
 
       <div className="relative z-10">
 
@@ -47,7 +57,7 @@ export default function Footer() {
 
               <Link
                 href="/contact"
-                className="rounded-xl bg-white px-8 py-4 font-semibold text-black hover:scale-105 transition"
+                className="rounded-xl bg-gradient-to-r from-amber-500 to-amber-500 px-8 py-4 font-semibold text-white hover:scale-105 transition shadow-lg shadow-amber-500/25"
               >
                 Book a Demo →
               </Link>
@@ -65,7 +75,7 @@ export default function Footer() {
             <div>
               <div className="flex items-center gap-3 mb-6">
 
-                <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center text-black font-bold text-xl">
+                <div className="w-12 h-12 rounded-xl bg-black flex items-center justify-center text-amber-500 font-bold text-xl">
                   B
                 </div>
 
@@ -74,87 +84,193 @@ export default function Footer() {
                     Blackstone AI
                   </h3>
                   <p className="text-white/50 text-sm">
-                    AI Powered Solutions
+                    Hospitality Intelligence
                   </p>
                 </div>
               </div>
 
               <p className="text-white/60 leading-relaxed">
-                Empowering businesses with intelligent automation,
+                Empowering hospitality businesses with intelligent automation,
                 data-driven decisions, and scalable AI innovation.
               </p>
             </div>
 
-            {/* Quick Links */}
+            {/* Quick Links - Matching Navbar */}
             <div>
               <h4 className="text-white font-semibold mb-6">
                 Quick Links
               </h4>
 
               <div className="space-y-4">
-                <Link href="/" className="block text-white/60 hover:text-cyan-400 transition">
-                  Home
+                <Link 
+                  href="/platform" 
+                  className={`block transition ${
+                    isActive('/platform') 
+                      ? 'text-amber-400' 
+                      : 'text-white/60 hover:text-amber-400'
+                  }`}
+                >
+                  Platform
                 </Link>
 
-                <Link href="/about" className="block text-white/60 hover:text-cyan-400 transition">
-                  About Us
-                </Link>
-
-                <Link href="/products" className="block text-white/60 hover:text-cyan-400 transition">
+                <Link 
+                  href="/products" 
+                  className={`block transition ${
+                    isActive('/products') 
+                      ? 'text-amber-400' 
+                      : 'text-white/60 hover:text-amber-400'
+                  }`}
+                >
                   Products
                 </Link>
 
-                <Link href="/contact" className="block text-white/60 hover:text-cyan-400 transition">
+                <Link 
+                  href="/pricing" 
+                  className={`block transition ${
+                    isActive('/pricing') 
+                      ? 'text-amber-400' 
+                      : 'text-white/60 hover:text-amber-400'
+                  }`}
+                >
+                  Pricing
+                </Link>
+
+                <Link 
+                  href="/contact" 
+                  className={`block transition ${
+                    isActive('/contact') 
+                      ? 'text-amber-400' 
+                      : 'text-white/60 hover:text-amber-400'
+                  }`}
+                >
                   Contact
                 </Link>
               </div>
             </div>
 
-            {/* Solutions */}
+            {/* Products - All Product Navlinks */}
             <div>
               <h4 className="text-white font-semibold mb-6">
-                Solutions
+                Platform Solutions
               </h4>
 
-              <div className="space-y-4">
-                <Link href="#" className="block text-white/60 hover:text-cyan-400 transition">
-                  AI Automation
+              <div className="space-y-3">
+                <Link 
+                  href="/products/independent-hotels" 
+                  className={`block transition text-sm ${
+                    isActive('/products/independent-hotels') 
+                      ? 'text-amber-400' 
+                      : 'text-white/60 hover:text-amber-400'
+                  }`}
+                >
+                  Independent Hotels
                 </Link>
 
-                <Link href="#" className="block text-white/60 hover:text-cyan-400 transition">
-                  Predictive Analytics
+                <Link 
+                  href="/products/boutique-stays" 
+                  className={`block transition text-sm ${
+                    isActive('/products/boutique-stays') 
+                      ? 'text-amber-400' 
+                      : 'text-white/60 hover:text-amber-400'
+                  }`}
+                >
+                  Boutique Stays
                 </Link>
 
-                <Link href="#" className="block text-white/60 hover:text-cyan-400 transition">
-                  Machine Learning
+                <Link 
+                  href="/products/hostels" 
+                  className={`block transition text-sm ${
+                    isActive('/products/hostels') 
+                      ? 'text-amber-400' 
+                      : 'text-white/60 hover:text-amber-400'
+                  }`}
+                >
+                  Hostels
                 </Link>
 
-                <Link href="#" className="block text-white/60 hover:text-cyan-400 transition">
-                  Custom AI Models
+                <Link 
+                  href="/products/vacation-rentals" 
+                  className={`block transition text-sm ${
+                    isActive('/products/vacation-rentals') 
+                      ? 'text-amber-400' 
+                      : 'text-white/60 hover:text-amber-400'
+                  }`}
+                >
+                  Vacation Rentals
+                </Link>
+
+                <Link 
+                  href="/products/groups-chains" 
+                  className={`block transition text-sm ${
+                    isActive('/products/groups-chains') 
+                      ? 'text-amber-400' 
+                      : 'text-white/60 hover:text-amber-400'
+                  }`}
+                >
+                  Groups & Chains
+                </Link>
+
+                <Link 
+                  href="/products/revenue-teams" 
+                  className={`block transition text-sm ${
+                    isActive('/products/revenue-teams') 
+                      ? 'text-amber-400' 
+                      : 'text-white/60 hover:text-amber-400'
+                  }`}
+                >
+                  Revenue Teams
                 </Link>
               </div>
             </div>
 
-            {/* Newsletter */}
+            {/* Solutions / Features */}
             <div>
               <h4 className="text-white font-semibold mb-6">
-                Stay Updated
+               Our Products
               </h4>
 
-              <p className="text-white/60 mb-5">
-                Get the latest AI insights and product updates.
-              </p>
+              <div className="space-y-4">
+                <Link 
+                  href="#" 
+                  className="block text-white/60 hover:text-amber-400 transition"
+                >
+                  AI Automation
+                </Link>
 
-              <div className="flex flex-col gap-3">
-                <input
-                  type="email"
-                  placeholder="Your email"
-                  className="rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-white/40 outline-none backdrop-blur-md"
-                />
+                <Link 
+                  href="#" 
+                  className="block text-white/60 hover:text-amber-400 transition"
+                >
+                  Revenue Management
+                </Link>
 
-                <button className="rounded-xl bg-white py-3 text-black font-semibold hover:opacity-90 transition">
-                  Subscribe
-                </button>
+                <Link 
+                  href="#" 
+                  className="block text-white/60 hover:text-amber-400 transition"
+                >
+                  Guest Experience
+                </Link>
+
+                <Link 
+                  href="#" 
+                  className="block text-white/60 hover:text-amber-400 transition"
+                >
+                  Operations & Analytics
+                </Link>
+
+                <Link 
+                  href="#" 
+                  className="block text-white/60 hover:text-amber-400 transition"
+                >
+                  Channel Management
+                </Link>
+
+                <Link 
+                  href="#" 
+                  className="block text-white/60 hover:text-amber-400 transition"
+                >
+                  Booking Engine
+                </Link>
               </div>
             </div>
 
@@ -168,15 +284,24 @@ export default function Footer() {
             </p>
 
             <div className="flex gap-6">
-              <Link href="#" className="text-white/50 hover:text-cyan-400 transition">
+              <Link 
+                href="#" 
+                className="text-white/50 hover:text-amber-400 transition"
+              >
                 Privacy Policy
               </Link>
 
-              <Link href="#" className="text-white/50 hover:text-cyan-400 transition">
+              <Link 
+                href="#" 
+                className="text-white/50 hover:text-amber-400 transition"
+              >
                 Terms
               </Link>
 
-              <Link href="#" className="text-white/50 hover:text-cyan-400 transition">
+              <Link 
+                href="#" 
+                className="text-white/50 hover:text-amber-400 transition"
+              >
                 Support
               </Link>
             </div>

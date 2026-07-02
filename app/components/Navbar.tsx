@@ -2,6 +2,7 @@
 import { ChevronDown, Menu, X, Building2, Globe, Layers, Zap, LayoutDashboard, MessageSquare, BarChart3, Package, Utensils, Sparkles, Building, Star, Users, Calendar, Brain, Smartphone } from "lucide-react";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import { products } from "../products/data/products";
 import { Product } from "../products/types";
 
@@ -9,6 +10,7 @@ import { Product } from "../products/types";
 type IconMap = Record<string, any>;
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isProductsOpen, setIsProductsOpen] = useState(false);
@@ -96,6 +98,13 @@ export default function Navbar() {
     timeoutRef.current = setTimeout(() => {
       setIsProductsOpen(false);
     }, 200);
+  };
+
+  // Check if link is active
+  const isActive = (path: string) => {
+    if (path === "/" && pathname === "/") return true;
+    if (path !== "/" && pathname.startsWith(path)) return true;
+    return false;
   };
 
   // Get product color based on title
@@ -322,7 +331,11 @@ export default function Navbar() {
           <div className="flex items-center gap-6 xl:gap-8">
             <Link
               href="/platform"
-              className="text-[14px] font-semibold text-black hover:text-neutral-700 transition-colors"
+              className={`text-[14px] font-semibold transition-colors ${
+                isActive('/platform') 
+                  ? 'text-black' 
+                  : 'text-neutral-600 hover:text-black'
+              }`}
             >
               Platform
             </Link>
@@ -336,7 +349,7 @@ export default function Navbar() {
             >
               <button 
                 className={`flex items-center gap-1 text-[14px] font-semibold transition-colors ${
-                  isProductsOpen ? 'text-black' : 'text-neutral-600 hover:text-black'
+                  isProductsOpen || isActive('/products') ? 'text-black' : 'text-neutral-600 hover:text-black'
                 }`}
               >
                 Products
@@ -356,12 +369,17 @@ export default function Navbar() {
                       const Icon = getProductIcon(product.title);
                       const subtitle = getProductSubtitle(product.title);
                       const colorClasses = getProductColorClasses(product.title);
+                      const isProductActive = isActive(`/products/${product.slug}`);
                       
                       return (
                         <Link
                           key={product.slug}
                           href={`/products/${product.slug}`}
-                          className="group flex items-start gap-3 p-3 rounded-xl hover:bg-neutral-50 transition-all duration-200 hover:scale-[1.02] border border-transparent hover:border-neutral-200/80 hover:shadow-sm"
+                          className={`group flex items-start gap-3 p-3 rounded-xl transition-all duration-200 hover:scale-[1.02] border ${
+                            isProductActive
+                              ? 'bg-neutral-50 border-neutral-200/80 shadow-sm'
+                              : 'border-transparent hover:border-neutral-200/80 hover:shadow-sm hover:bg-neutral-50'
+                          }`}
                           onClick={() => setIsProductsOpen(false)}
                         >
                           {/* Themed Icon with gradient background */}
@@ -371,10 +389,10 @@ export default function Navbar() {
                           
                           {/* Text content with themed colors on hover */}
                           <div className="flex-1 min-w-0">
-                            <h4 className={`text-sm font-semibold text-neutral-900 ${colorClasses.hoverText} transition-colors leading-tight`}>
+                            <h4 className={`text-sm font-semibold ${isProductActive ? 'text-black' : 'text-neutral-900'} ${colorClasses.hoverText} transition-colors leading-tight`}>
                               {product.title}
                             </h4>
-                            <p className={`text-xs text-neutral-500 ${colorClasses.hoverText.replace('hover:', 'group-hover:')} transition-colors mt-0.5 leading-tight line-clamp-1`}>
+                            <p className={`text-xs ${isProductActive ? 'text-neutral-700' : 'text-neutral-500'} ${colorClasses.hoverText.replace('hover:', 'group-hover:')} transition-colors mt-0.5 leading-tight line-clamp-1`}>
                               {subtitle}
                             </p>
                           </div>
@@ -387,7 +405,9 @@ export default function Navbar() {
                   <div className="mt-4 pt-3 border-t border-neutral-200/80">
                     <Link
                       href="/products"
-                      className="flex items-center justify-center gap-2 text-sm font-semibold text-black hover:text-amber-500 transition-colors group"
+                      className={`flex items-center justify-center gap-2 text-sm font-semibold transition-colors group ${
+                        isActive('/products') ? 'text-amber-500' : 'text-black hover:text-amber-500'
+                      }`}
                       onClick={() => setIsProductsOpen(false)}
                     >
                       View All Products
@@ -400,14 +420,22 @@ export default function Navbar() {
 
             <Link
               href="/pricing"
-              className="text-[14px] font-semibold text-neutral-600 hover:text-black transition-colors"
+              className={`text-[14px] font-semibold transition-colors ${
+                isActive('/pricing') 
+                  ? 'text-black' 
+                  : 'text-neutral-600 hover:text-black'
+              }`}
             >
               Pricing
             </Link>
 
             <Link
               href="/contact"
-              className="text-[14px] font-semibold text-neutral-600 hover:text-black transition-colors"
+              className={`text-[14px] font-semibold transition-colors ${
+                isActive('/contact') 
+                  ? 'text-black' 
+                  : 'text-neutral-600 hover:text-black'
+              }`}
             >
               Contact
             </Link>
@@ -417,19 +445,14 @@ export default function Navbar() {
         {/* Right Side */}
         <div className="flex items-center gap-2 sm:gap-4">
           <Link
-            href="/book-demo"
-            className="hidden md:flex items-center text-[14px] font-semibold text-neutral-600 hover:text-black transition-colors"
+            href="/get-started"
+            className={`h-8 sm:h-9 px-3 sm:px-4 rounded-lg text-[12px] sm:text-[13px] font-medium transition-all hover:scale-105 duration-300 whitespace-nowrap flex items-center ${
+              isActive('/get-started') || isActive('/book-demo')
+                ? 'bg-black text-white'
+                : 'bg-black text-white hover:bg-neutral-800'
+            }`}
           >
             Book Demo
-          </Link>
-
-          <div className="hidden md:block h-5 w-px bg-neutral-200" />
-
-          <Link
-            href="/get-started"
-            className="h-8 sm:h-9 px-3 sm:px-4 rounded-lg bg-black text-white text-[12px] sm:text-[13px] font-medium hover:bg-neutral-800 transition-all hover:scale-105 duration-300 whitespace-nowrap flex items-center"
-          >
-            Get Started
           </Link>
 
           {/* Mobile Menu Toggle */}
@@ -468,7 +491,11 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-6 space-y-3 sm:space-y-4">
           <Link
             href="/platform"
-            className="block py-2.5 sm:py-3 px-3 sm:px-4 rounded-lg hover:bg-neutral-50 transition-colors text-[14px] sm:text-[15px] font-medium text-black"
+            className={`block py-2.5 sm:py-3 px-3 sm:px-4 rounded-lg transition-colors text-[14px] sm:text-[15px] font-medium ${
+              isActive('/platform') 
+                ? 'bg-neutral-100 text-black' 
+                : 'text-black hover:bg-neutral-50'
+            }`}
             onClick={() => setIsMobileMenuOpen(false)}
           >
             Platform
@@ -476,7 +503,9 @@ export default function Navbar() {
 
           {/* Products Section in Mobile with themed colors */}
           <div className="space-y-2">
-            <div className="py-2.5 sm:py-3 px-3 sm:px-4 text-[14px] sm:text-[15px] font-semibold text-black">
+            <div className={`py-2.5 sm:py-3 px-3 sm:px-4 text-[14px] sm:text-[15px] font-semibold ${
+              isActive('/products') ? 'text-amber-500' : 'text-black'
+            }`}>
               Products
             </div>
             <div className="grid grid-cols-2 gap-2 pl-2">
@@ -484,22 +513,29 @@ export default function Navbar() {
                 const Icon = getProductIcon(product.title);
                 const subtitle = getProductSubtitle(product.title);
                 const colorClasses = getProductColorClasses(product.title);
+                const isProductActive = isActive(`/products/${product.slug}`);
                 
                 return (
                   <Link
                     key={product.slug}
                     href={`/products/${product.slug}`}
-                    className="flex flex-col items-center text-center gap-1.5 p-3 rounded-lg hover:bg-neutral-50 transition-colors border border-transparent hover:border-neutral-200/80"
+                    className={`flex flex-col items-center text-center gap-1.5 p-3 rounded-lg transition-colors border ${
+                      isProductActive
+                        ? 'bg-neutral-50 border-neutral-200/80'
+                        : 'border-transparent hover:border-neutral-200/80 hover:bg-neutral-50'
+                    }`}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     <div className={`flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br ${colorClasses.gradient} ${colorClasses.bg} flex items-center justify-center`}>
                       <Icon className={`w-5 h-5 ${colorClasses.text}`} strokeWidth={1.75} />
                     </div>
                     <div className="w-full">
-                      <div className={`text-xs font-semibold text-neutral-900 ${colorClasses.hoverText.replace('group-hover:', '')} leading-tight`}>
+                      <div className={`text-xs font-semibold ${isProductActive ? 'text-black' : 'text-neutral-900'} leading-tight`}>
                         {product.title}
                       </div>
-                      <div className="text-[10px] text-neutral-500 mt-0.5 leading-tight line-clamp-1">{subtitle}</div>
+                      <div className={`text-[10px] ${isProductActive ? 'text-neutral-700' : 'text-neutral-500'} mt-0.5 leading-tight line-clamp-1`}>
+                        {subtitle}
+                      </div>
                     </div>
                   </Link>
                 );
@@ -509,7 +545,11 @@ export default function Navbar() {
 
           <Link
             href="/pricing"
-            className="block py-2.5 sm:py-3 px-3 sm:px-4 rounded-lg hover:bg-neutral-50 transition-colors text-[14px] sm:text-[15px] text-neutral-600"
+            className={`block py-2.5 sm:py-3 px-3 sm:px-4 rounded-lg transition-colors text-[14px] sm:text-[15px] ${
+              isActive('/pricing') 
+                ? 'bg-neutral-100 text-black font-medium' 
+                : 'text-neutral-600 hover:bg-neutral-50'
+            }`}
             onClick={() => setIsMobileMenuOpen(false)}
           >
             Pricing
@@ -517,7 +557,11 @@ export default function Navbar() {
 
           <Link
             href="/contact"
-            className="block py-2.5 sm:py-3 px-3 sm:px-4 rounded-lg hover:bg-neutral-50 transition-colors text-[14px] sm:text-[15px] text-neutral-600"
+            className={`block py-2.5 sm:py-3 px-3 sm:px-4 rounded-lg transition-colors text-[14px] sm:text-[15px] ${
+              isActive('/contact') 
+                ? 'bg-neutral-100 text-black font-medium' 
+                : 'text-neutral-600 hover:bg-neutral-50'
+            }`}
             onClick={() => setIsMobileMenuOpen(false)}
           >
             Contact
@@ -525,18 +569,15 @@ export default function Navbar() {
 
           <div className="pt-3 sm:pt-4 border-t border-neutral-200 space-y-3">
             <Link
-              href="/book-demo"
-              className="block w-full py-2.5 sm:py-3 rounded-lg text-[14px] sm:text-[15px] font-medium text-neutral-600 hover:bg-neutral-50 transition-colors text-center"
+              href="/get-started"
+              className={`block w-full py-2.5 sm:py-3 rounded-lg text-[14px] sm:text-[15px] font-medium transition-colors text-center ${
+                isActive('/get-started') || isActive('/book-demo')
+                  ? 'bg-black text-white'
+                  : 'bg-black text-white hover:bg-neutral-800'
+              }`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Book Demo
-            </Link>
-            <Link
-              href="/get-started"
-              className="block w-full py-2.5 sm:py-3 rounded-lg bg-black text-white text-[14px] sm:text-[15px] font-medium hover:bg-neutral-800 transition-colors text-center"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Get Started
             </Link>
           </div>
         </div>
