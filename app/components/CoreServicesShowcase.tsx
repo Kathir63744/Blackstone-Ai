@@ -34,6 +34,7 @@ import {
   BarChart3,
   Rocket
 } from 'lucide-react';
+import Link from 'next/link';
 
 // ======================================================
 // TYPES
@@ -43,6 +44,7 @@ interface Product {
   title: string;
   subtitle: string;
   features: string[];
+  slug?: string;
 }
 
 interface TrustItem {
@@ -95,6 +97,7 @@ const products: Product[] = [
   {
     title: "Google Hotel Ads & Booking",
     subtitle: "INCREASE DIRECT BOOKINGS",
+    slug: "google-hotel-ads-booking",
     features: [
       "Commission-free reservations",
       "Google Hotel Ads visibility",
@@ -105,6 +108,7 @@ const products: Product[] = [
   {
     title: "Hotel Website Development",
     subtitle: "TURN VISITORS INTO GUESTS",
+    slug: "hotel-website-development",
     features: [
       "SEO-ready website structure",
       "Mobile-first responsive design",
@@ -115,6 +119,7 @@ const products: Product[] = [
   {
     title: "Channel Management Platform",
     subtitle: "STAY PERFECTLY SYNCHRONIZED",
+    slug: "channel-management-platform",
     features: [
       "100+ OTA integrations",
       "Instant inventory updates",
@@ -125,6 +130,7 @@ const products: Product[] = [
   {
     title: "AI Dynamic Pricing Engine",
     subtitle: "MAXIMIZE REVENUE AUTOMATICALLY",
+    slug: "ai-dynamic-pricing-engine",
     features: [
       "Demand-driven pricing",
       "Competitor rate monitoring",
@@ -135,6 +141,7 @@ const products: Product[] = [
   {
     title: "Front Office Management",
     subtitle: "BETTER GUEST EXPERIENCES",
+    slug: "front-office-management",
     features: [
       "Quick check-in and check-out",
       "Guest profile management",
@@ -145,6 +152,7 @@ const products: Product[] = [
   {
     title: "WhatsApp Automation Suite",
     subtitle: "ENGAGE GUESTS INSTANTLY",
+    slug: "whatsapp-automation-suite",
     features: [
       "Booking confirmations",
       "Pre-arrival communication",
@@ -155,6 +163,7 @@ const products: Product[] = [
   {
     title: "Revenue Management System",
     subtitle: "BOOST HOTEL PROFITABILITY",
+    slug: "revenue-management-system",
     features: [
       "Revenue forecasting",
       "ADR and occupancy insights",
@@ -165,6 +174,7 @@ const products: Product[] = [
   {
     title: "POS & Inventory Management",
     subtitle: "SIMPLIFY DAILY OPERATIONS",
+    slug: "pos-inventory-management",
     features: [
       "Multi-outlet billing",
       "Inventory tracking",
@@ -175,6 +185,7 @@ const products: Product[] = [
   {
     title: "Restaurant Management System",
     subtitle: "SPEED UP FOOD SERVICE",
+    slug: "restaurant-management-system",
     features: [
       "Order-to-billing automation",
       "Kitchen order management",
@@ -185,6 +196,7 @@ const products: Product[] = [
   {
     title: "Housekeeping Management",
     subtitle: "KEEP ROOMS READY FASTER",
+    slug: "housekeeping-management",
     features: [
       "Live room status updates",
       "Task allocation tools",
@@ -195,6 +207,7 @@ const products: Product[] = [
   {
     title: "Multi-Property Operations",
     subtitle: "MANAGE ALL HOTELS FROM ONE PLACE",
+    slug: "multi-property-operations",
     features: [
       "Centralized dashboard",
       "Cross-property reporting",
@@ -205,6 +218,7 @@ const products: Product[] = [
   {
     title: "Guest Reputation Management",
     subtitle: "BUILD TRUST AND CREDIBILITY",
+    slug: "guest-reputation-management",
     features: [
       "Automated review requests",
       "Review response management",
@@ -215,6 +229,7 @@ const products: Product[] = [
   {
     title: "Customer Relationship Management",
     subtitle: "CREATE LOYAL GUESTS",
+    slug: "customer-relationship-management",
     features: [
       "Guest history tracking",
       "Personalized communication",
@@ -225,6 +240,7 @@ const products: Product[] = [
   {
     title: "Booking & Reservation Management",
     subtitle: "HANDLE BOOKINGS EFFORTLESSLY",
+    slug: "booking-reservation-management",
     features: [
       "Central reservation dashboard",
       "Real-time availability",
@@ -235,6 +251,7 @@ const products: Product[] = [
   {
     title: "Analytics & Business Intelligence",
     subtitle: "MAKE SMARTER DECISIONS",
+    slug: "analytics-business-intelligence",
     features: [
       "Real-time dashboards",
       "Revenue analytics",
@@ -245,6 +262,7 @@ const products: Product[] = [
   {
     title: "Guest Mobile Experience",
     subtitle: "MODERNIZE EVERY STAY",
+    slug: "guest-mobile-experience",
     features: [
       "Mobile check-in and check-out",
       "Digital room requests",
@@ -286,19 +304,21 @@ const trustItems: TrustItem[] = [
 ];
 
 // ======================================================
-// CALENDAR THEME HELPERS
+// UPDATED THEME COLORS - 16 UNIQUE COLORS
 // ======================================================
 
 const getCalendarTheme = (index: number, isDark: boolean) => {
-  const lightThemes = [
+  // 16 Unique Color Themes
+  const colorThemes = [
+    // 1. Royal Blue
     {
-      border: "border-blue-200/80 hover:border-blue-400",
-      bg: "bg-blue-50/30 hover:bg-blue-50/50",
-      dot: "bg-blue-400",
+      border: "border-blue-400/60 hover:border-blue-500",
+      bg: "bg-blue-50/60 hover:bg-blue-50/80",
+      dot: "bg-blue-500",
       accent: "text-blue-600",
       lightAccent: "text-blue-400",
-      shadow: "shadow-blue-100/20",
-      gradient: "from-blue-50/40 to-transparent",
+      shadow: "shadow-blue-200/30",
+      gradient: "from-blue-100/50 to-transparent",
       cardBg: "bg-white",
       textPrimary: "text-gray-900",
       textSecondary: "text-gray-600",
@@ -306,14 +326,15 @@ const getCalendarTheme = (index: number, isDark: boolean) => {
       borderLight: "border-gray-200/80",
       hoverBg: "hover:bg-gray-50/50",
     },
+    // 2. Emerald Green
     {
-      border: "border-emerald-200/80 hover:border-emerald-400",
-      bg: "bg-emerald-50/30 hover:bg-emerald-50/50",
-      dot: "bg-emerald-400",
+      border: "border-emerald-400/60 hover:border-emerald-500",
+      bg: "bg-emerald-50/60 hover:bg-emerald-50/80",
+      dot: "bg-emerald-500",
       accent: "text-emerald-600",
       lightAccent: "text-emerald-400",
-      shadow: "shadow-emerald-100/20",
-      gradient: "from-emerald-50/40 to-transparent",
+      shadow: "shadow-emerald-200/30",
+      gradient: "from-emerald-100/50 to-transparent",
       cardBg: "bg-white",
       textPrimary: "text-gray-900",
       textSecondary: "text-gray-600",
@@ -321,14 +342,15 @@ const getCalendarTheme = (index: number, isDark: boolean) => {
       borderLight: "border-gray-200/80",
       hoverBg: "hover:bg-gray-50/50",
     },
+    // 3. Amethyst Purple
     {
-      border: "border-purple-200/80 hover:border-purple-400",
-      bg: "bg-purple-50/30 hover:bg-purple-50/50",
-      dot: "bg-purple-400",
+      border: "border-purple-400/60 hover:border-purple-500",
+      bg: "bg-purple-50/60 hover:bg-purple-50/80",
+      dot: "bg-purple-500",
       accent: "text-purple-600",
       lightAccent: "text-purple-400",
-      shadow: "shadow-purple-100/20",
-      gradient: "from-purple-50/40 to-transparent",
+      shadow: "shadow-purple-200/30",
+      gradient: "from-purple-100/50 to-transparent",
       cardBg: "bg-white",
       textPrimary: "text-gray-900",
       textSecondary: "text-gray-600",
@@ -336,14 +358,15 @@ const getCalendarTheme = (index: number, isDark: boolean) => {
       borderLight: "border-gray-200/80",
       hoverBg: "hover:bg-gray-50/50",
     },
+    // 4. Coral Orange
     {
-      border: "border-orange-200/80 hover:border-orange-400",
-      bg: "bg-orange-50/30 hover:bg-orange-50/50",
-      dot: "bg-orange-400",
+      border: "border-orange-400/60 hover:border-orange-500",
+      bg: "bg-orange-50/60 hover:bg-orange-50/80",
+      dot: "bg-orange-500",
       accent: "text-orange-600",
       lightAccent: "text-orange-400",
-      shadow: "shadow-orange-100/20",
-      gradient: "from-orange-50/40 to-transparent",
+      shadow: "shadow-orange-200/30",
+      gradient: "from-orange-100/50 to-transparent",
       cardBg: "bg-white",
       textPrimary: "text-gray-900",
       textSecondary: "text-gray-600",
@@ -351,14 +374,15 @@ const getCalendarTheme = (index: number, isDark: boolean) => {
       borderLight: "border-gray-200/80",
       hoverBg: "hover:bg-gray-50/50",
     },
+    // 5. Rose Pink
     {
-      border: "border-rose-200/80 hover:border-rose-400",
-      bg: "bg-rose-50/30 hover:bg-rose-50/50",
-      dot: "bg-rose-400",
+      border: "border-rose-400/60 hover:border-rose-500",
+      bg: "bg-rose-50/60 hover:bg-rose-50/80",
+      dot: "bg-rose-500",
       accent: "text-rose-600",
       lightAccent: "text-rose-400",
-      shadow: "shadow-rose-100/20",
-      gradient: "from-rose-50/40 to-transparent",
+      shadow: "shadow-rose-200/30",
+      gradient: "from-rose-100/50 to-transparent",
       cardBg: "bg-white",
       textPrimary: "text-gray-900",
       textSecondary: "text-gray-600",
@@ -366,14 +390,15 @@ const getCalendarTheme = (index: number, isDark: boolean) => {
       borderLight: "border-gray-200/80",
       hoverBg: "hover:bg-gray-50/50",
     },
+    // 6. Indigo
     {
-      border: "border-indigo-200/80 hover:border-indigo-400",
-      bg: "bg-indigo-50/30 hover:bg-indigo-50/50",
-      dot: "bg-indigo-400",
+      border: "border-indigo-400/60 hover:border-indigo-500",
+      bg: "bg-indigo-50/60 hover:bg-indigo-50/80",
+      dot: "bg-indigo-500",
       accent: "text-indigo-600",
       lightAccent: "text-indigo-400",
-      shadow: "shadow-indigo-100/20",
-      gradient: "from-indigo-50/40 to-transparent",
+      shadow: "shadow-indigo-200/30",
+      gradient: "from-indigo-100/50 to-transparent",
       cardBg: "bg-white",
       textPrimary: "text-gray-900",
       textSecondary: "text-gray-600",
@@ -381,14 +406,15 @@ const getCalendarTheme = (index: number, isDark: boolean) => {
       borderLight: "border-gray-200/80",
       hoverBg: "hover:bg-gray-50/50",
     },
+    // 7. Teal
     {
-      border: "border-teal-200/80 hover:border-teal-400",
-      bg: "bg-teal-50/30 hover:bg-teal-50/50",
-      dot: "bg-teal-400",
+      border: "border-teal-400/60 hover:border-teal-500",
+      bg: "bg-teal-50/60 hover:bg-teal-50/80",
+      dot: "bg-teal-500",
       accent: "text-teal-600",
       lightAccent: "text-teal-400",
-      shadow: "shadow-teal-100/20",
-      gradient: "from-teal-50/40 to-transparent",
+      shadow: "shadow-teal-200/30",
+      gradient: "from-teal-100/50 to-transparent",
       cardBg: "bg-white",
       textPrimary: "text-gray-900",
       textSecondary: "text-gray-600",
@@ -396,14 +422,143 @@ const getCalendarTheme = (index: number, isDark: boolean) => {
       borderLight: "border-gray-200/80",
       hoverBg: "hover:bg-gray-50/50",
     },
+    // 8. Sky Blue
     {
-      border: "border-sky-200/80 hover:border-sky-400",
-      bg: "bg-sky-50/30 hover:bg-sky-50/50",
-      dot: "bg-sky-400",
+      border: "border-sky-400/60 hover:border-sky-500",
+      bg: "bg-sky-50/60 hover:bg-sky-50/80",
+      dot: "bg-sky-500",
       accent: "text-sky-600",
       lightAccent: "text-sky-400",
-      shadow: "shadow-sky-100/20",
-      gradient: "from-sky-50/40 to-transparent",
+      shadow: "shadow-sky-200/30",
+      gradient: "from-sky-100/50 to-transparent",
+      cardBg: "bg-white",
+      textPrimary: "text-gray-900",
+      textSecondary: "text-gray-600",
+      textMuted: "text-gray-400",
+      borderLight: "border-gray-200/80",
+      hoverBg: "hover:bg-gray-50/50",
+    },
+    // 9. Amber Gold
+    {
+      border: "border-amber-400/60 hover:border-amber-500",
+      bg: "bg-amber-50/60 hover:bg-amber-50/80",
+      dot: "bg-amber-500",
+      accent: "text-amber-600",
+      lightAccent: "text-amber-400",
+      shadow: "shadow-amber-200/30",
+      gradient: "from-amber-100/50 to-transparent",
+      cardBg: "bg-white",
+      textPrimary: "text-gray-900",
+      textSecondary: "text-gray-600",
+      textMuted: "text-gray-400",
+      borderLight: "border-gray-200/80",
+      hoverBg: "hover:bg-gray-50/50",
+    },
+    // 10. Cyan
+    {
+      border: "border-cyan-400/60 hover:border-cyan-500",
+      bg: "bg-cyan-50/60 hover:bg-cyan-50/80",
+      dot: "bg-cyan-500",
+      accent: "text-cyan-600",
+      lightAccent: "text-cyan-400",
+      shadow: "shadow-cyan-200/30",
+      gradient: "from-cyan-100/50 to-transparent",
+      cardBg: "bg-white",
+      textPrimary: "text-gray-900",
+      textSecondary: "text-gray-600",
+      textMuted: "text-gray-400",
+      borderLight: "border-gray-200/80",
+      hoverBg: "hover:bg-gray-50/50",
+    },
+    // 11. Violet
+    {
+      border: "border-violet-400/60 hover:border-violet-500",
+      bg: "bg-violet-50/60 hover:bg-violet-50/80",
+      dot: "bg-violet-500",
+      accent: "text-violet-600",
+      lightAccent: "text-violet-400",
+      shadow: "shadow-violet-200/30",
+      gradient: "from-violet-100/50 to-transparent",
+      cardBg: "bg-white",
+      textPrimary: "text-gray-900",
+      textSecondary: "text-gray-600",
+      textMuted: "text-gray-400",
+      borderLight: "border-gray-200/80",
+      hoverBg: "hover:bg-gray-50/50",
+    },
+    // 12. Pink
+    {
+      border: "border-pink-400/60 hover:border-pink-500",
+      bg: "bg-pink-50/60 hover:bg-pink-50/80",
+      dot: "bg-pink-500",
+      accent: "text-pink-600",
+      lightAccent: "text-pink-400",
+      shadow: "shadow-pink-200/30",
+      gradient: "from-pink-100/50 to-transparent",
+      cardBg: "bg-white",
+      textPrimary: "text-gray-900",
+      textSecondary: "text-gray-600",
+      textMuted: "text-gray-400",
+      borderLight: "border-gray-200/80",
+      hoverBg: "hover:bg-gray-50/50",
+    },
+    // 13. Lime Green
+    {
+      border: "border-lime-400/60 hover:border-lime-500",
+      bg: "bg-lime-50/60 hover:bg-lime-50/80",
+      dot: "bg-lime-500",
+      accent: "text-lime-600",
+      lightAccent: "text-lime-400",
+      shadow: "shadow-lime-200/30",
+      gradient: "from-lime-100/50 to-transparent",
+      cardBg: "bg-white",
+      textPrimary: "text-gray-900",
+      textSecondary: "text-gray-600",
+      textMuted: "text-gray-400",
+      borderLight: "border-gray-200/80",
+      hoverBg: "hover:bg-gray-50/50",
+    },
+    // 14. Fuchsia
+    {
+      border: "border-fuchsia-400/60 hover:border-fuchsia-500",
+      bg: "bg-fuchsia-50/60 hover:bg-fuchsia-50/80",
+      dot: "bg-fuchsia-500",
+      accent: "text-fuchsia-600",
+      lightAccent: "text-fuchsia-400",
+      shadow: "shadow-fuchsia-200/30",
+      gradient: "from-fuchsia-100/50 to-transparent",
+      cardBg: "bg-white",
+      textPrimary: "text-gray-900",
+      textSecondary: "text-gray-600",
+      textMuted: "text-gray-400",
+      borderLight: "border-gray-200/80",
+      hoverBg: "hover:bg-gray-50/50",
+    },
+    // 15. Slate Blue
+    {
+      border: "border-slate-400/60 hover:border-slate-500",
+      bg: "bg-slate-50/60 hover:bg-slate-50/80",
+      dot: "bg-slate-500",
+      accent: "text-slate-600",
+      lightAccent: "text-slate-400",
+      shadow: "shadow-slate-200/30",
+      gradient: "from-slate-100/50 to-transparent",
+      cardBg: "bg-white",
+      textPrimary: "text-gray-900",
+      textSecondary: "text-gray-600",
+      textMuted: "text-gray-400",
+      borderLight: "border-gray-200/80",
+      hoverBg: "hover:bg-gray-50/50",
+    },
+    // 16. Crimson Red
+    {
+      border: "border-red-400/60 hover:border-red-500",
+      bg: "bg-red-50/60 hover:bg-red-50/80",
+      dot: "bg-red-500",
+      accent: "text-red-600",
+      lightAccent: "text-red-400",
+      shadow: "shadow-red-200/30",
+      gradient: "from-red-100/50 to-transparent",
       cardBg: "bg-white",
       textPrimary: "text-gray-900",
       textSecondary: "text-gray-600",
@@ -413,130 +568,23 @@ const getCalendarTheme = (index: number, isDark: boolean) => {
     },
   ];
 
-  const darkThemes = [
-    {
-      border: "border-blue-700/80 hover:border-blue-500",
-      bg: "bg-blue-900/30 hover:bg-blue-900/50",
-      dot: "bg-blue-400",
-      accent: "text-blue-400",
-      lightAccent: "text-blue-300",
-      shadow: "shadow-blue-500/10",
-      gradient: "from-blue-900/40 to-transparent",
-      cardBg: "bg-gray-800/80",
-      textPrimary: "text-gray-100",
-      textSecondary: "text-gray-300",
-      textMuted: "text-gray-400",
-      borderLight: "border-gray-700/80",
-      hoverBg: "hover:bg-gray-700/50",
-    },
-    {
-      border: "border-emerald-700/80 hover:border-emerald-500",
-      bg: "bg-emerald-900/30 hover:bg-emerald-900/50",
-      dot: "bg-emerald-400",
-      accent: "text-emerald-400",
-      lightAccent: "text-emerald-300",
-      shadow: "shadow-emerald-500/10",
-      gradient: "from-emerald-900/40 to-transparent",
-      cardBg: "bg-gray-800/80",
-      textPrimary: "text-gray-100",
-      textSecondary: "text-gray-300",
-      textMuted: "text-gray-400",
-      borderLight: "border-gray-700/80",
-      hoverBg: "hover:bg-gray-700/50",
-    },
-    {
-      border: "border-purple-700/80 hover:border-purple-500",
-      bg: "bg-purple-900/30 hover:bg-purple-900/50",
-      dot: "bg-purple-400",
-      accent: "text-purple-400",
-      lightAccent: "text-purple-300",
-      shadow: "shadow-purple-500/10",
-      gradient: "from-purple-900/40 to-transparent",
-      cardBg: "bg-gray-800/80",
-      textPrimary: "text-gray-100",
-      textSecondary: "text-gray-300",
-      textMuted: "text-gray-400",
-      borderLight: "border-gray-700/80",
-      hoverBg: "hover:bg-gray-700/50",
-    },
-    {
-      border: "border-orange-700/80 hover:border-orange-500",
-      bg: "bg-orange-900/30 hover:bg-orange-900/50",
-      dot: "bg-orange-400",
-      accent: "text-orange-400",
-      lightAccent: "text-orange-300",
-      shadow: "shadow-orange-500/10",
-      gradient: "from-orange-900/40 to-transparent",
-      cardBg: "bg-gray-800/80",
-      textPrimary: "text-gray-100",
-      textSecondary: "text-gray-300",
-      textMuted: "text-gray-400",
-      borderLight: "border-gray-700/80",
-      hoverBg: "hover:bg-gray-700/50",
-    },
-    {
-      border: "border-rose-700/80 hover:border-rose-500",
-      bg: "bg-rose-900/30 hover:bg-rose-900/50",
-      dot: "bg-rose-400",
-      accent: "text-rose-400",
-      lightAccent: "text-rose-300",
-      shadow: "shadow-rose-500/10",
-      gradient: "from-rose-900/40 to-transparent",
-      cardBg: "bg-gray-800/80",
-      textPrimary: "text-gray-100",
-      textSecondary: "text-gray-300",
-      textMuted: "text-gray-400",
-      borderLight: "border-gray-700/80",
-      hoverBg: "hover:bg-gray-700/50",
-    },
-    {
-      border: "border-indigo-700/80 hover:border-indigo-500",
-      bg: "bg-indigo-900/30 hover:bg-indigo-900/50",
-      dot: "bg-indigo-400",
-      accent: "text-indigo-400",
-      lightAccent: "text-indigo-300",
-      shadow: "shadow-indigo-500/10",
-      gradient: "from-indigo-900/40 to-transparent",
-      cardBg: "bg-gray-800/80",
-      textPrimary: "text-gray-100",
-      textSecondary: "text-gray-300",
-      textMuted: "text-gray-400",
-      borderLight: "border-gray-700/80",
-      hoverBg: "hover:bg-gray-700/50",
-    },
-    {
-      border: "border-teal-700/80 hover:border-teal-500",
-      bg: "bg-teal-900/30 hover:bg-teal-900/50",
-      dot: "bg-teal-400",
-      accent: "text-teal-400",
-      lightAccent: "text-teal-300",
-      shadow: "shadow-teal-500/10",
-      gradient: "from-teal-900/40 to-transparent",
-      cardBg: "bg-gray-800/80",
-      textPrimary: "text-gray-100",
-      textSecondary: "text-gray-300",
-      textMuted: "text-gray-400",
-      borderLight: "border-gray-700/80",
-      hoverBg: "hover:bg-gray-700/50",
-    },
-    {
-      border: "border-sky-700/80 hover:border-sky-500",
-      bg: "bg-sky-900/30 hover:bg-sky-900/50",
-      dot: "bg-sky-400",
-      accent: "text-sky-400",
-      lightAccent: "text-sky-300",
-      shadow: "shadow-sky-500/10",
-      gradient: "from-sky-900/40 to-transparent",
-      cardBg: "bg-gray-800/80",
-      textPrimary: "text-gray-100",
-      textSecondary: "text-gray-300",
-      textMuted: "text-gray-400",
-      borderLight: "border-gray-700/80",
-      hoverBg: "hover:bg-gray-700/50",
-    },
-  ];
+  const darkThemes = colorThemes.map(theme => ({
+    ...theme,
+    border: theme.border.replace('/60', '/80').replace('hover:border', 'hover:border'),
+    bg: theme.bg.replace('-50/', '-900/').replace('-50/60', '-900/30').replace('-50/80', '-900/50'),
+    accent: theme.accent.replace('text-', 'text-').replace('-600', '-400'),
+    lightAccent: theme.lightAccent.replace('-400', '-300'),
+    shadow: theme.shadow.replace('-200/', '-500/').replace('/30', '/10'),
+    gradient: theme.gradient.replace('-100/', '-900/').replace('/50', '/40'),
+    textPrimary: "text-gray-100",
+    textSecondary: "text-gray-300",
+    textMuted: "text-gray-400",
+    borderLight: "border-gray-700/80",
+    hoverBg: "hover:bg-gray-700/50",
+    cardBg: "bg-gray-800/80",
+  }));
 
-  return isDark ? darkThemes[index % darkThemes.length] : lightThemes[index % lightThemes.length];
+  return isDark ? darkThemes[index % darkThemes.length] : colorThemes[index % colorThemes.length];
 };
 
 const getCalendarIcon = (index: number) => {
@@ -587,70 +635,88 @@ const ServiceCell = ({ product, index, isDark, delay }: {
   const dayNumber = String(index + 1).padStart(2, '0');
   const { ref, isVisible } = useFadeInOnScroll(0.1);
   
+  // Determine if product has a slug for navigation
+  const productSlug = product.slug || product.title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+  
   return (
-    <div 
-      ref={ref}
-      className={`group relative ${theme.cardBg} border ${theme.border} rounded-xl p-4 sm:p-4 md:p-5 transition-all duration-700 ease-out hover:shadow-xl ${theme.shadow} hover:-translate-y-0.5 cursor-default overflow-hidden flex flex-col h-full min-h-[280px] sm:min-h-[260px] md:min-h-[280px] ${
-        isVisible 
-          ? 'opacity-100 translate-y-0' 
-          : 'opacity-0 translate-y-12'
-      }`}
-      style={{ transitionDelay: `${delay}ms` }}
+    <Link
+      href={`/products/${productSlug}`}
+      className="block h-full"
     >
-      <div className={`absolute inset-0 bg-gradient-to-br ${theme.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-200`} />
-      
-      <div className="relative flex flex-col h-full">
-        {/* Header */}
-        <div className="flex items-start justify-between mb-2 sm:mb-2 md:mb-3">
-          <div className="flex items-center gap-2 sm:gap-2 md:gap-3">
-            <div className={`w-10 h-10 sm:w-9 sm:h-9 md:w-11 md:h-11 rounded-xl ${theme.bg} flex items-center justify-center flex-shrink-0 border-2 ${theme.border} transition-all duration-200 group-hover:scale-105`}>
-              <span className={`text-sm sm:text-xs md:text-sm font-bold ${theme.accent}`}>{dayNumber}</span>
+      <div 
+        ref={ref}
+        className={`group relative ${theme.cardBg} border ${theme.border} rounded-xl p-4 sm:p-4 md:p-5 transition-all duration-700 ease-out hover:shadow-xl ${theme.shadow} hover:-translate-y-0.5 cursor-pointer overflow-hidden flex flex-col h-full min-h-[280px] sm:min-h-[260px] md:min-h-[280px] ${
+          isVisible 
+            ? 'opacity-100 translate-y-0' 
+            : 'opacity-0 translate-y-12'
+        }`}
+        style={{ transitionDelay: `${delay}ms` }}
+      >
+        <div className={`absolute inset-0 bg-gradient-to-br ${theme.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-200`} />
+        
+        {/* Click indicator arrow - appears on hover */}
+        <div className={`absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0 ${theme.accent}`}>
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </div>
+        
+        <div className="relative flex flex-col h-full">
+          {/* Header */}
+          <div className="flex items-start justify-between mb-2 sm:mb-2 md:mb-3">
+            <div className="flex items-center gap-2 sm:gap-2 md:gap-3">
+              <div className={`w-10 h-10 sm:w-9 sm:h-9 md:w-11 md:h-11 rounded-xl ${theme.bg} flex items-center justify-center flex-shrink-0 border-2 ${theme.border} transition-all duration-200 group-hover:scale-105`}>
+                <span className={`text-sm sm:text-xs md:text-sm font-bold ${theme.accent}`}>{dayNumber}</span>
+              </div>
+              <div className={`p-1 sm:p-1 md:p-1.5 rounded-lg ${theme.bg} transition-all duration-200 group-hover:scale-110`}>
+                <CalendarIcon className={`w-4 h-4 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 ${theme.accent}`} strokeWidth={1.75} />
+              </div>
             </div>
-            <div className={`p-1 sm:p-1 md:p-1.5 rounded-lg ${theme.bg} transition-all duration-200 group-hover:scale-110`}>
-              <CalendarIcon className={`w-4 h-4 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 ${theme.accent}`} strokeWidth={1.75} />
-            </div>
+            <StatusBadge index={index} isDark={isDark} />
           </div>
-          <StatusBadge index={index} isDark={isDark} />
+          
+          {/* Meta - Hide on very small screens */}
+          <div className="hidden xs:flex items-center gap-2 sm:gap-2 mb-2 sm:mb-2 md:mb-3">
+            <div className={`w-1.5 h-1.5 rounded-full ${theme.dot} ${isDark ? '' : 'animate-pulse'}`} />
+            <span className={`text-[10px] sm:text-[8px] md:text-[10px] font-medium ${theme.textMuted} tracking-wider uppercase`}>
+              {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Special'][index % 8]}
+            </span>
+            <span className={`text-[10px] sm:text-[8px] md:text-[10px] ${theme.textMuted}`}>•</span>
+            <span className={`text-[10px] sm:text-[8px] md:text-[10px] font-mono ${theme.textMuted}`}>
+              Q{Math.floor(index / 4) + 1}
+            </span>
+          </div>
+          
+          {/* Title */}
+          <div className="mb-3 sm:mb-3 md:mb-4 flex-1">
+            <h3 className={`text-[15px] sm:text-sm md:text-base font-bold ${theme.textPrimary} leading-snug mb-1 group-hover:${isDark ? 'text-gray-200' : 'text-gray-800'} transition-colors`}>
+              {product.title}
+            </h3>
+            <p className={`text-[11px] sm:text-[10px] md:text-xs font-semibold ${theme.textMuted} tracking-wider`}>
+              {product.subtitle}
+            </p>
+          </div>
+          
+          {/* Features */}
+          <div className="mt-auto">
+            <div className={`h-px bg-gradient-to-r ${isDark ? 'from-gray-700/80' : 'from-gray-200/80'} to-transparent mb-2 sm:mb-2 md:mb-3`} />
+            <ul className="space-y-1 sm:space-y-1 md:space-y-1.5">
+              {product.features.map((feature, idx) => (
+                <li key={idx} className={`text-[13px] sm:text-[12px] md:text-sm ${theme.textSecondary} flex items-start gap-1.5 sm:gap-1.5 md:gap-2 group/feature`}>
+                  <span className={`${theme.accent} select-none transition-all duration-200 group-hover/feature:scale-125 text-[10px] sm:text-[9px] md:text-sm`}>◆</span>
+                  <span className={`group-hover/feature:${isDark ? 'text-gray-200' : 'text-gray-700'} transition-colors`}>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
         
-        {/* Meta - Hide on very small screens */}
-        <div className="hidden xs:flex items-center gap-2 sm:gap-2 mb-2 sm:mb-2 md:mb-3">
-          <div className={`w-1.5 h-1.5 rounded-full ${theme.dot} ${isDark ? '' : 'animate-pulse'}`} />
-          <span className={`text-[10px] sm:text-[8px] md:text-[10px] font-medium ${theme.textMuted} tracking-wider uppercase`}>
-            {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Special'][index % 8]}
-          </span>
-          <span className={`text-[10px] sm:text-[8px] md:text-[10px] ${theme.textMuted}`}>•</span>
-          <span className={`text-[10px] sm:text-[8px] md:text-[10px] font-mono ${theme.textMuted}`}>
-            Q{Math.floor(index / 4) + 1}
-          </span>
-        </div>
-        
-        {/* Title */}
-        <div className="mb-3 sm:mb-3 md:mb-4 flex-1">
-          <h3 className={`text-[15px] sm:text-sm md:text-base font-bold ${theme.textPrimary} leading-snug mb-1 group-hover:${isDark ? 'text-gray-200' : 'text-gray-800'} transition-colors`}>
-            {product.title}
-          </h3>
-          <p className={`text-[11px] sm:text-[10px] md:text-xs font-semibold ${theme.textMuted} tracking-wider`}>
-            {product.subtitle}
-          </p>
-        </div>
-        
-        {/* Features */}
-        <div className="mt-auto">
-          <div className={`h-px bg-gradient-to-r ${isDark ? 'from-gray-700/80' : 'from-gray-200/80'} to-transparent mb-2 sm:mb-2 md:mb-3`} />
-          <ul className="space-y-1 sm:space-y-1 md:space-y-1.5">
-            {product.features.map((feature, idx) => (
-              <li key={idx} className={`text-[13px] sm:text-[12px] md:text-sm ${theme.textSecondary} flex items-start gap-1.5 sm:gap-1.5 md:gap-2 group/feature`}>
-                <span className={`${theme.accent} select-none transition-all duration-200 group-hover/feature:scale-125 text-[10px] sm:text-[9px] md:text-sm`}>◆</span>
-                <span className={`group-hover/feature:${isDark ? 'text-gray-200' : 'text-gray-700'} transition-colors`}>{feature}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <div className={`absolute top-0 right-0 w-12 h-12 sm:w-12 sm:h-12 md:w-16 md:h-16 bg-gradient-to-bl ${theme.gradient} opacity-20 pointer-events-none`} />
       </div>
-      
-      <div className={`absolute top-0 right-0 w-12 h-12 sm:w-12 sm:h-12 md:w-16 md:h-16 bg-gradient-to-bl ${theme.gradient} opacity-20 pointer-events-none`} />
-    </div>
+    </Link>
   );
 };
 
